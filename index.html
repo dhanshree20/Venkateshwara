@@ -1,0 +1,2009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Venkateshwara Corporation - Premium Tensile Structures</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600;700&family=Saira:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+
+  <style>
+    /* NAVBAR FONT */
+nav, nav a, nav button {
+    font-family: 'Arimo', sans-serif !important;
+}
+/* SITE-WIDE FONT */
+body, h1, h2, h3, h4, h5, h6, p, span, li, button, a {
+    font-family: 'Saira', sans-serif !important;
+}
+
+  :root {
+    --navy: #0f172a;
+    --gold: #f59e0b;
+    --blue: #1e40af;
+  }
+
+
+/* Sticky Background Wrapper */
+.about-sticky-wrapper {
+    position: sticky;
+    top: 0;
+}
+/* Sticky Fullscreen Background */
+.sticky-bg {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    background-image: url('images/about.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    filter: brightness(0.85);
+    z-index: -1;
+}
+
+/* Background Image
+.about-sticky-image {
+    position: absolute;
+    inset: 0;
+    background-image: url('about1.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transform: scale(1.1);
+    filter: brightness(0.85);
+} */
+
+/* Fade Up Animation */
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -30%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+.animate-fade-up {
+    animation: fadeUp 1.2s ease-out forwards;
+}
+
+/* Ken Burns Zoom */
+@keyframes slowZoom {
+    0% { transform: translateY(0) scale(1.12); }
+    100% { transform: translateY(0) scale(1); }
+}
+
+/* Parallax effect */
+.parallax-active {
+    will-change: transform;
+    transition: transform 0.1s linear;
+}
+
+  /* SQUARE PRODUCT SLIDER WITH NAVY OVERLAY */
+/* TRUE VIDEO STYLE HOVER EFFECT */
+.product-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.2rem;
+  transition: transform .4s ease, box-shadow .4s ease;
+  cursor: pointer;
+  transform-style: preserve-3d;
+}
+
+.product-card:hover {
+  transform: translateY(-14px) scale(1.04) rotateX(4deg);
+  box-shadow: 0 25px 45px rgba(0,0,0,0.35);
+}
+
+/* IMAGE */
+.product-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .8s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.15);
+}
+
+/* DARK BLUR OVERLAY */
+.product-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65); /* navy black glass */
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.5s ease;
+}
+
+.product-card:hover .product-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* TEXT INSIDE OVERLAY */
+.product-overlay-content {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  color: white;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all 0.45s ease;
+}
+
+.product-card:hover .product-overlay-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.product-title {
+  font-size: 1.55rem;
+  font-weight: 700;
+  margin-bottom: .25rem;
+}
+
+.product-desc {
+  font-size: .95rem;
+  opacity: 0.95;
+  line-height: 1.35rem;
+}
+
+/* ARROWS - NOW FULLY VISIBLE & OUTSIDE */
+.arrow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+  background: white;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  transition: all 0.35s ease;
+  color: var(--navy);
+  
+}
+
+/* PUSH FAR OUTSIDE IMAGES */
+#prev-btn { left: -120px; }
+#next-btn { right: -120px; }
+
+.arrow-btn:hover {
+  background: var(--gold);
+  color: white;
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: 0 20px 50px rgba(245,158,11,0.4);
+}
+
+/* Mobile: Bring closer */
+@media (max-width: 1024px) {
+  #prev-btn { left: -65px; }
+  #next-btn { right: -65px; }
+}
+@media (max-width: 768px) {
+  #prev-btn { left: -55px; }
+  #next-btn { right: -55px; }
+  .arrow-btn { width: 56px; height: 56px; }
+}
+
+/* DOTS */
+.dot {
+  width: 11px; height: 11px;
+  background: #cbd5e1;
+  border-radius: 50%;
+  transition: all 0.4s;
+}
+.dot.active {
+  background: #f59e0b;
+  transform: scale(1.4);
+  box-shadow: 0 0 15px rgba(245,158,11,0.6);
+}/* SCROLL ANIMATIONS — SUPER SMOOTH */
+[data-aos] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-aos="fade-up"] { transform: translateY(60px); }
+[data-aos="zoom-in"] { transform: scale(0.8); }
+.aos-animate {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
+ /* MAKE SLIDER MATCH CARD HEIGHT */
+#valuesSlider {
+  height: 100%;
+}
+#valuesSlider .slide img {
+  height: 100%;
+  min-height: 380px;
+  object-fit: cover;
+}#imageSlider { 
+      position: relative; width: 100%; height: 420px; overflow: hidden; 
+      border-radius: 1rem; box-shadow: 0 15px 35px rgba(0,0,0,.1); 
+    }
+    .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease; }
+    .slide.active { opacity: 1; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; }
+    .dots { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; gap: .75rem; }
+    .dot { width: 12px; height: 12px; background: rgba(255,255,255,.5); border-radius: 50%; cursor: pointer; transition: all .3s; }
+    .dot.active { background: var(--gold); transform: scale(1.3); box-shadow: 0 0 10px rgba(245,158,11,0.8); }/* KEN BURNS EFFECT */
+.kenburns {
+  animation: kenburns 12s ease-out infinite;
+}
+
+@keyframes kenburns {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.15) translate(10px, 10px);
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
+.typewriter {
+  overflow: hidden;
+  white-space: wrap;
+  display: block;
+  animation: typing 3.5s steps(40, end);
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+footer [data-aos] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Styles for new hero slider */
+.slide img {
+  filter: brightness(65%);
+  transition: all 0.5s ease;
+}
+
+.slide {
+  transform: scale(0.3) translateY(200px);
+  opacity: 0;
+  border-radius: 20px;
+}
+
+.thumb img {
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
+.thumb img:hover {
+  transform: scale(1.05);
+}
+
+#navbar {
+  transform: translateY(-150%);
+}
+
+.video-card {
+  position: relative;
+  overflow: hidden;
+  height: 350px;
+ width:  240px;
+  cursor: pointer;
+  transition: transform .4s ease, box-shadow .4s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-12px) scale(1.05);
+  box-shadow: 0 20px 50px rgba(0,0,0,.35);
+}
+
+/* IMAGE */
+.card-img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+
+.video-card:hover .card-img {
+  transform: scale(1.18);
+}
+
+/* OPAQUE NAVY BLUE GRADIENT */
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #0f1a36 0%, #0a1127 100%); /* navy gradient */
+  opacity: 0;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: all .35s ease;
+}
+
+.video-card:hover .card-overlay {
+  opacity: 1;
+}
+
+/* TEXT INSIDE OVERLAY */
+.card-overlay h3 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.card-overlay p {
+  color: #dce2f0;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+/* EXPAND BUTTON */
+.expand-btn {
+  background: #f59e0b;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  border: none;
+  width: fit-content;
+  transition: .3s;
+}
+
+.expand-btn:hover {
+  background: #d48809;
+}
+
+.video-card {
+  transform-style: preserve-3d;
+  transition: transform .25s ease, box-shadow .25s ease;
+  will-change: transform;
+}
+.video-card:hover {
+  box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+}
+
+
+/* Testimonial Card */
+
+/* Testimonial Card */
+.testimonial-card {
+    background: white;
+    padding: 1.8rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    width: 100%;
+    max-width: 700px;   /* wider cards like image */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Left text block */
+.testimonial-left {
+    max-width: 80%;
+}
+
+/* Right star rating */
+.testimonial-stars {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: #facc15; /* yellow-400 */
+}
+
+/* Smooth infinite scroll */
+.slider-track {
+    animation: scrollUp 14s linear infinite;
+}
+
+@keyframes scrollUp {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
+}
+
+
+/* Infinite Vertical Scroll Keyframe */
+@keyframes slide-up {
+    0%   { transform: translateY(0); }
+    25%  { transform: translateY(-120px); }
+    50%  { transform: translateY(-240px); }
+    75%  { transform: translateY(-360px); }
+    100% { transform: translateY(0); }
+}
+
+/* Apply to track */
+.slider-track {
+    animation: slide-up 14s linear infinite;
+}
+:root{
+  --navy: #071433;      /* change this to match your logo's navy */
+  --edge-white: #ffffff;
+}
+
+/* NAV BACKGROUND: dark center fading to white both sides */
+.nav-gradient {
+  position: relative;
+  /* The gradient centers a dark band and fades to white at the edges.
+     Tweak the stop percentages to widen / narrow the dark band. */
+  background: linear-gradient(
+    to right,
+    var(--edge-white) 0%,
+    var(--edge-white) 18%,
+    rgba(255,255,255,0.9) 28%,
+    var(--navy) 50%,
+    rgba(255,255,255,0.9) 72%,
+    var(--edge-white) 82%,
+    var(--edge-white) 100%
+  );
+  box-shadow: 0 2px 10px rgba(10,10,10,0.06);
+  z-index: 100;
+}
+
+/* Make sure nav content sits above the gradient band */
+.site-nav > .max-w-7xl { position: relative; }
+
+/* Links style (dark by default so they are visible on white edges) */
+.nav-link {
+  color: var(--navy);
+  text-decoration: none;
+  transition: color .18s ease, transform .12s ease;
+}
+.nav-link:hover { color: #1f3f66; transform: translateY(-1px); }
+
+/* Logo sizing */
+.logo-wrap .logo-img {
+  height: 64px;        /* increase if you want bigger logo */
+  width: auto;
+  display: block;
+  pointer-events: none;
+  /* add subtle border / background to sit clearly on dark band if needed */
+  /* background: rgba(255,255,255,0.03); padding: 6px; border-radius: 10px; */
+}
+
+/* Optional: give dark band slightly taller area vertically
+   so the logo sits perfectly and the fade feels natural. */
+.site-nav {
+  padding-top: 1rem;   /* increases navbar height */
+  padding-bottom: 1rem;
+}
+
+/* RESPONSIVE: on small screens, reduce gradient complexity */
+@media (max-width: 768px) {
+  .nav-gradient {
+    background: linear-gradient(
+      to right,
+      var(--edge-white) 0%,
+      var(--edge-white) 22%,
+      var(--navy) 50%,
+      var(--edge-white) 78%,
+      var(--edge-white) 100%
+    );
+  }
+
+  .logo-wrap .logo-img { height: 52px; }
+  .nav-left, .nav-right { gap: 10px; font-size: 14px; }
+}
+
+/* MOBILE NAVIGATION */
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none !important;
+  }
+
+  #hamburger-btn {
+    display: flex !important;
+  }
+
+  /* Hamburger animation */
+  #hamburger-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  #hamburger-btn.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  #hamburger-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+
+  /* Mobile menu overlay */
+  #mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-top: 1px solid #e5e7eb;
+    z-index: 1000;
+  }
+
+  /* Ensure nav stays on top */
+  nav {
+    position: relative;
+    z-index: 1001;
+  }
+
+  /* Top contact bar responsiveness */
+  .scroll-text span {
+    margin: 0 4rem;
+    font-size: 12px;
+  }
+
+  /* Hero section adjustments */
+  .hero-text {
+    left: 5%;
+    bottom: 10%;
+    max-width: 90%;
+  }
+
+  /* Product cards spacing */
+  .video-card {
+    height: 280px;
+    width: 200px;
+  }
+
+  .card-img {
+    height: 280px;
+  }
+
+  /* Footer adjustments */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  /* Floating buttons positioning */
+  .fixed.bottom-6.right-6 {
+    right: 1rem;
+    bottom: 1rem;
+  }
+}
+
+/* TABLET RESPONSIVENESS */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-text {
+    left: 5%;
+    bottom: 12%;
+    max-width: 80%;
+  }
+
+  .video-card {
+    height: 320px;
+    width: 220px;
+  }
+
+  .card-img {
+    height: 320px;
+  }
+}
+
+/* SMALL MOBILE DEVICES */
+@media (max-width: 480px) {
+  .hero-text {
+    left: 5%;
+    bottom: 8%;
+    max-width: 90%;
+  }
+
+  .video-card {
+    height: 250px;
+    width: 180px;
+  }
+
+  .card-img {
+    height: 250px;
+  }
+
+  .scroll-text span {
+    margin: 0 2rem;
+    font-size: 11px;
+  }
+
+  /* Adjust nav logo size */
+  nav img.h-20 {
+    height: 3rem;
+  }
+
+  nav .text-2xl {
+    font-size: 1.25rem;
+  }
+
+  nav .text-lg {
+    font-size: 1rem;
+  }
+}
+
+/* If you have transparent navbar on scroll, use this to keep readability */
+.site-nav.scrolled {
+  backdrop-filter: blur(6px);
+}
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.scroll-text {
+  display: inline-flex;
+  white-space: nowrap;
+  will-change: transform;
+}
+/* ---------- MOBILE FIXES FOR HERO SECTION ---------- */
+@media (max-width: 640px) {
+
+  /* Move text slightly up */
+  .hero-text {
+    bottom: 22%;
+    left: 1rem;
+    right: 1rem;
+    max-width: 90%;
+  }
+
+  /* Thumbnails → centered bottom */
+  #thumbs {
+    justify-content: center;
+  }
+
+  /* Container moves to bottom center */
+  .thumb {
+    width: 85px !important;
+    height: 110px !important;
+  }
+
+  /* Move thumbnail + progress group */
+  .hero-thumbs-group {
+    bottom: 10px !important;
+    right: 50% !important;
+    transform: translateX(50%);
+  }
+}
+
+/* ------------------------------------------
+   MOBILE FIX – MOVE HERO TEXT UP
+------------------------------------------- */
+@media (max-width: 640px) {
+  .mobile-hero-text {
+    bottom: 28% !important;   /* raises the text upwards */
+    left: 1rem !important;
+    right: 1rem !important;
+    max-width: 90% !important;
+  }
+
+  /* smaller text for clean layout */
+  #hero-title {
+    font-size: 1.75rem !important;
+    line-height: 1.3 !important;
+  }
+
+  #hero-sub {
+    font-size: 1rem !important;
+    line-height: 1.35 !important;
+  }
+}
+/* ======================================================
+   HERO SECTION — TABLET RESPONSIVE FIXES (641px–1024px)
+   Desktop & Mobile remain unchanged
+====================================================== */
+@media (min-width: 641px) and (max-width: 1024px) {
+
+  /* Move text slightly upward on tablets */
+  .mobile-hero-text {
+    bottom: 22% !important;
+    max-width: 80% !important;
+  }
+
+  /* Adjust title size on tablets */
+  #hero-title {
+    font-size: 2.6rem !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Adjust subtitle size */
+  #hero-sub {
+    font-size: 1.25rem !important;
+    max-width: 70% !important;
+  }
+
+  /* Move thumbnails down slightly */
+  .hero-thumbs-group {
+    bottom: 20px !important;
+    right: 20px !important;
+  }
+
+  /* Slightly scale down thumbnails */
+  #thumbs .thumb {
+    width: 120px !important;
+    height: 170px !important;
+  }
+}
+
+/* ----------------------------------------------------
+   RESPONSIVE FIXES FOR PRODUCT CARDS (MOBILE + TABLET)
+   Desktop layout remains 100% unchanged
+---------------------------------------------------- */
+
+/* For screens below 1024px (tablets) */
+@media (max-width: 1024px) {
+  .video-card {
+    height: 280px !important;
+    width: 100% !important;
+  }
+
+  .card-img {
+    height: 280px !important;
+  }
+
+  .card-overlay h3 {
+    font-size: 1rem !important;
+  }
+
+  .card-overlay p {
+    font-size: 0.85rem !important;
+  }
+
+  .expand-btn {
+    padding: 6px 12px !important;
+    font-size: 0.85rem !important;
+  }
+}
+
+/* For screens below 768px (large mobiles) */
+@media (max-width: 768px) {
+  .video-card {
+    height: 250px !important;
+  }
+
+  .card-img {
+    height: 250px !important;
+  }
+
+  .card-overlay {
+    padding: 14px !important;
+  }
+
+  .card-overlay h3 {
+    font-size: 0.95rem !important;
+  }
+
+  .card-overlay p {
+    font-size: 0.78rem !important;
+    line-height: 1.25rem !important;
+  }
+
+  .expand-btn {
+    font-size: 0.8rem !important;
+    padding: 6px 10px !important;
+  }
+}
+
+/* For screens below 640px (mobiles) */
+@media (max-width: 640px) {
+
+  /* 1 column clean layout */
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .video-card {
+    height: 230px !important;
+  }
+
+  .card-img {
+    height: 230px !important;
+  }
+
+  .card-overlay h3 {
+    font-size: 0.9rem !important;
+  }
+
+  .card-overlay p {
+    font-size: 0.75rem !important;
+  }
+
+  .expand-btn {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* For ultra-small screens (below 380px) */
+@media (max-width: 380px) {
+  .video-card {
+    height: 200px !important;
+  }
+
+  .card-img {
+    height: 200px !important;
+  }
+
+  .card-overlay {
+    padding: 12px !important;
+  }
+
+  .card-overlay h3 {
+    font-size: 0.85rem !important;
+  }
+
+  .card-overlay p {
+    font-size: 0.7rem !important;
+  }
+
+  .expand-btn {
+    font-size: 0.7rem !important;
+  }
+}
+/* ============================
+   CTA RESPONSIVE FIXES
+   (Desktop layout untouched)
+============================ */
+
+@media (max-width: 1024px) {
+  #cta-section {
+    height: auto !important;
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+
+  #cta-section video {
+    object-position: center center !important;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* Reduce height on tablets & big mobiles */
+  #cta-section {
+    height: auto !important;
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  #cta-text h2 {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+  }
+
+  #cta-text p {
+    font-size: 1rem !important;
+    line-height: 1.45 !important;
+    padding: 0 10px;
+  }
+
+  #cta-text a {
+    font-size: 1rem !important;
+    padding: 10px 24px !important;
+  }
+}
+
+@media (max-width: 640px) {
+
+  /* Smooth mobile layout */
+  #cta-section {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  #cta-text h2 {
+    font-size: 1.6rem !important;
+  }
+
+  #cta-text p {
+    font-size: 0.95rem !important;
+  }
+
+  #cta-text a {
+    font-size: 0.95rem !important;
+    padding: 10px 22px !important;
+  }
+}
+
+@media (max-width: 400px) {
+
+  #cta-text h2 {
+    font-size: 1.4rem !important;
+  }
+
+  #cta-text p {
+    font-size: 0.85rem !important;
+  }
+
+  #cta-text a {
+    font-size: 0.85rem !important;
+    padding: 8px 18px !important;
+  }
+}/* ==========================================================
+   NAVBAR RESPONSIVE FIXES (NO CHANGE TO DESKTOP LAYOUT)
+========================================================== */
+
+/* Hide desktop menus on screens below md */
+@media (max-width: 768px) {
+
+  .desktop-menu {
+    display: none !important;
+  }
+
+  nav .grid {
+    grid-template-columns: 1fr auto !important;
+    grid-template-rows: 1fr !important;
+  }
+
+  nav .row-span-2 {
+    grid-row: auto !important;
+  }
+
+  /* Align logo and hamburger neatly */
+  #hamburger-btn {
+    display: flex !important;
+  }
+
+  /* Logo smaller */
+  nav img {
+    height: 60px !important;
+  }
+}
+
+/* -------- TABLET LAYOUT FIX (769px – 1024px) -------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  nav .grid {
+    grid-template-columns: auto 1fr !important;
+    grid-template-rows: auto auto !important;
+  }
+
+  nav img {
+    height: 70px !important;
+  }
+
+  nav a {
+    font-size: 0.95rem !important;
+  }
+
+  /* Reduce spacing to prevent wrapping */
+  .desktop-menu {
+    margin-left: 0.6rem;
+    margin-right: 0.6rem;
+  }
+}
+
+/* -------- MOBILE MENU STYLES -------- */
+#mobile-menu {
+  transition: all 0.3s ease-in-out;
+  transform-origin: top;
+}
+
+#mobile-menu.show {
+  display: block !important;
+  transform: scaleY(1);
+}
+
+#mobile-menu.hide {
+  transform: scaleY(0);
+  opacity: 0;
+}
+
+/* Ensure navbar stays above hero section text */
+nav {
+  position: relative;
+  z-index: 100 !important;
+}
+
+/* Ensure hamburger button is always above everything */
+#hamburger-btn {
+  position: relative;
+  z-index: 200 !important;
+}
+/* ==========================================================
+   FOOTER — RESPONSIVE FIXES (MOBILE + TABLET)
+   Desktop layout remains EXACTLY the same
+========================================================== */
+
+/* -------- Small Screens (mobile: below 768px) -------- */
+@media (max-width: 768px) {
+
+  /* Footer grid becomes 1 column */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    justify-items: start !important;
+    text-align: left !important;
+  }
+
+  /* Logo size reduced slightly */
+  footer img {
+    height: 80px !important;
+  }
+
+  /* Reduce heading sizes */
+  .footer-grid h3 {
+    font-size: 1.2rem !important;
+  }
+
+  /* Reduce paragraph + list size */
+  .footer-grid p,
+  .footer-grid li a {
+    font-size: 0.95rem !important;
+    line-height: 1.4rem !important;
+  }
+
+  /* Social icons spacing */
+  .footer-grid .flex {
+    justify-content: flex-start !important;
+  }
+
+  /* Spacing adjustments */
+  .footer-grid > div {
+    padding-left: 0 !important;
+  }
+}
+
+/* -------- Extra Small Screens (below 480px) -------- */
+@media (max-width: 480px) {
+
+  .footer-grid h3 {
+    font-size: 1.1rem !important;
+  }
+
+  .footer-grid p,
+  .footer-grid li a {
+    font-size: 0.9rem !important;
+  }
+
+  footer img {
+    height: 70px !important;
+  }
+}
+
+/* -------- Tablet Fix (769px–1024px) -------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem !important;
+  }
+
+  .footer-grid p,
+  .footer-grid li a {
+    font-size: 1rem !important;
+  }
+}
+
+</style>
+</head>
+<body class="bg-white text-white">
+
+  
+
+  
+
+<!-- TOP CONTACT BAR -->
+<div class="w-full bg-white text-black text-sm py-2 border-b overflow-hidden relative">
+
+  <div class="scroll-text whitespace-nowrap flex items-center"
+       style="animation: scroll-left 18s linear infinite;">
+    
+    <span class="mx-6">
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
+    </span>
+
+    <span class="mx-6">
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
+    </span>
+
+    <span class="mx-6">
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
+    </span>
+
+    <!-- duplicate more for smoother infinite loop -->
+    <span class="mx-6">
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
+    </span>
+
+  </div>
+
+</div>
+
+
+<nav class="w-full bg-white shadow z-50">
+
+  <!-- GRID: LEFT (logo + name) | RIGHT (top menu + categories) -->
+  <div class="max-w-7xl mx-auto px-6 
+              grid grid-cols-[auto_1fr] grid-rows-2 items-center">
+
+    <!-- 🌟 LEFT SIDE: LOGO + COMPANY NAME -->
+    <div class="row-span-2 flex items-center space-x-4 -ml-[30px]">
+
+      <img src="logo.jpg" class="h-20 w-auto" alt="Logo">
+
+      <div class="flex flex-col leading-tight">
+        <span class="text-2xl font-bold text-gray-900">Venkateshwara</span>
+        <span class="text-lg font-semibold text-gray-700">Corporation</span>
+      </div>
+
+    </div>
+
+    <!-- ⭐ ROW 1: RIGHT TOP MENU -->
+    <div class="flex justify-end items-center space-x-8
+                text-gray-800 font-medium text-lg py-3">
+
+      <a href="index.html" class="hover:text-yellow-500 desktop-menu">Home</a>
+      <a href="about.html" class="hover:text-yellow-500 desktop-menu">About Us</a>
+      <a href="products.html" class="hover:text-yellow-500 desktop-menu">Products</a>
+      <a href="gallery.html" class="hover:text-yellow-500 desktop-menu">Gallery</a>
+      <a href="contact.html" class="hover:text-yellow-500 desktop-menu">Contact Us</a>
+
+      <i data-feather="facebook" class="w-5 h-5 cursor-pointer desktop-menu"></i>
+      <i data-feather="linkedin" class="w-5 h-5 cursor-pointer desktop-menu"></i>
+      <i data-feather="instagram" class="w-5 h-5 cursor-pointer desktop-menu"></i>
+
+      <!-- HAMBURGER MENU BUTTON -->
+      <button id="hamburger-btn" class="md:hidden w-8 h-8 flex flex-col justify-center items-center space-y-1 bg-transparent border-none cursor-pointer">
+        <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+        <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+        <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+      </button>
+
+    </div>
+
+    <!-- ⭐ ROW 2: CENTERED CATEGORIES -->
+    <div class="flex justify-center items-center space-x-12
+                text-gray-900 font-semibold text-lg py-2 desktop-menu">
+
+        <!-- Same dropdowns here -->
+        <!-- FABRICATION -->
+        <div class="relative group">
+          <a href="awaning_carparking.html" class="hover:text-yellow-500">Awnings ▾</a>
+
+          <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white shadow-lg
+                    rounded-lg p-4 w-56 z-50">
+            <ul class="space-y-2 text-base">
+              <li><a href="awaning_carparking.html" class="text-gray-800 hover:text-yellow-500">Awnings</a></li>
+              <li><a href="awaning_carparking.html" class="text-gray-800 hover:text-yellow-500">Car Parking</a></li>
+              <li><a href="awaning_carparking.html" class="text-gray-800 hover:text-yellow-500">Tensile Structures</a>
+              </li>
+              <li><a href="awaning_carparking.html" class="text-gray-800 hover:text-yellow-500">Sheds</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Fabrication -->
+
+        <div class="relative group">
+          <a href="awaning_carparking.html" class="hover:text-yellow-500">Fabrication ▾</a>
+
+          <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white shadow-lg
+                    rounded-lg p-4 w-56 z-50">
+            <ul class="space-y-2 text-base">
+              <li><a href="fabrication.html" class="text-gray-800 hover:text-yellow-500">Residential Fabrication</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- INTERIORS -->
+        <div class="relative group">
+          <a href="interior.html" class="hover:text-yellow-500">Interiors ▾</a>
+
+
+          <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+            <ul class="space-y-2 text-base">
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Furniture Work</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Plumbing</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Electrical Work</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Tile Work</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Painting</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Internal Modification</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">POP</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Sliding Windows</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">French Doors</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CIVIL WORK -->
+        <div class="relative group">
+          <a href="civil-work.html" class="hover:text-yellow-500">Civil Work▾</a>
+
+
+          <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+            <ul class="space-y-2 text-base">
+              <li><a href="civil-work.html" class="text-gray-800 hover:text-yellow-500">Construction</a></li>
+              <li><a href="civil-work.html" class="text-gray-800 hover:text-yellow-500">Renovation</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- EXTERIORS -->
+        <div class="relative group">
+          <a href="exterior.html" class="hover:text-yellow-500">Exteriors ▾</a>
+
+
+          <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+            <ul class="space-y-2 text-base">
+              <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Society Painting</a></li>
+              <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Bungalow Painting</a></li>
+              <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Cleaning</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <!-- OTHER SERVICES -->
+        <div class="relative group">
+          <a href="other-services.html" class="hover:text-yellow-500">Other Services ▾</a>
+
+
+          <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+            <ul class="space-y-2 text-base">
+              <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Waterproofing</a></li>
+              <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Housekeeping</a></li>
+              <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Society AMC</a></li>
+              <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Pest Control</a></li>
+              <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Gardening</a></li>
+              <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Anti-Bird Netting</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    <!-- MOBILE MENU (hidden by default) -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 bg-white shadow-lg z-50 border-t border-gray-200">
+      <div class="flex flex-col py-4 px-6 space-y-4">
+        <!-- Main Navigation -->
+        <a href="index.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">Home</a>
+        <a href="about.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">About Us</a>
+        <a href="products.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">Products</a>
+        <a href="gallery.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">Gallery</a>
+        <a href="contact.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2">Contact Us</a>
+
+     
+
+        <!-- Social Icons -->
+        
+      </div>
+    </div>
+
+  </div>
+
+</nav>
+<script>
+const hamburger = document.getElementById("hamburger-btn");
+const mobileMenu = document.getElementById("mobile-menu");
+
+hamburger.addEventListener("click", () => {
+  // toggle open
+  if (mobileMenu.classList.contains("show")) {
+    mobileMenu.classList.remove("show");
+    mobileMenu.classList.add("hide");
+  } else {
+    mobileMenu.classList.remove("hide");
+    mobileMenu.classList.add("show");
+  }
+
+  // Animate hamburger icon
+  hamburger.classList.toggle("open");
+});
+</script>
+
+<script>feather.replace();</script>
+
+
+
+
+
+
+
+<!-- ================= HERO SECTION ================= -->
+<section class="relative h-[75vh] md:h-[85vh] w-full overflow-hidden">
+
+  <!-- SLIDES -->
+  <div id="hero-slides" class="absolute inset-0 w-full h-full z-[1]">
+    <div class="slide absolute inset-0">
+      <img src="images/about hero2.jpg" class="w-full h-full object-cover" />
+    </div>
+
+    <div class="slide absolute inset-0">
+      <img src="images/hero3.webp" class="w-full h-full object-cover" />
+    </div>
+
+    <div class="slide absolute inset-0">
+      <img src="images/about hero4.jpg" class="w-full h-full object-cover" />
+    </div>
+
+    <div class="slide absolute inset-0">
+      <img src="images/hero4.jpg" class="w-full h-full object-cover" />
+    </div>
+  </div>
+
+  <!-- TEXT CONTENT -->
+  <div class="hero-text mobile-hero-text absolute 
+           left-5 bottom-10 
+           md:left-10 md:bottom-16 
+           z-[20] text-left max-w-xl
+           px-4 md:px-0">
+
+
+    <h1 id="hero-title"
+      class="text-3xl sm:text-4xl md:text-6xl font-bold mb-3 leading-tight">
+    </h1>
+
+    <p id="hero-sub"
+      class="text-base sm:text-lg md:text-2xl opacity-90 max-w-sm md:max-w-md">
+    </p>
+
+  </div>
+
+  <!-- THUMBNAILS + PROGRESS (Mobile optimized) -->
+ <div
+    class="hero-thumbs-group absolute bottom-4 sm:bottom-6 right-4 sm:right-6 
+           flex flex-col items-end space-y-3 sm:space-y-4 z-[50]">
+
+
+    <!-- Thumbnails -->
+    <div id="thumbs"
+      class="flex space-x-2 sm:space-x-3">
+      <!-- injected dynamically -->
+    </div>
+
+    <!-- Progress bar -->
+    <div class="w-28 sm:w-40 h-1 bg-white/20 rounded-full overflow-hidden">
+      <div id="progress-bar" class="h-full bg-white w-0"></div>
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+/* =============== SLIDE DATA =============== */
+const titles = [
+  "Premium Tensile Structures",
+  "Architectural Fabric Solutions",
+  "Modern Interior Transformations",
+  "Elegant Outdoor Shading Systems"
+];
+
+const subtitles = [
+  "Engineered for strength, designed for elegance.",
+  "High-performance designs for commercial & residential spaces.",
+  "A perfect blend of creativity, precision, and comfort.",
+  "Durable, weather-resistant & aesthetically crafted."
+];
+
+const thumbnails = [
+  "images/about hero2.jpg",
+  "images/hero3.webp",
+  "images/about hero4.jpg",
+  "images/hero4.jpg"
+];
+
+/* =============== ELEMENTS =============== */
+const slides = document.querySelectorAll(".slide");
+const titleEl = document.getElementById("hero-title");
+const subEl = document.getElementById("hero-sub");
+const progress = document.getElementById("progress-bar");
+const thumbContainer = document.getElementById("thumbs");
+
+let index = 0;
+const slideDuration = 4000;
+
+/* =============== BUILD THUMBNAILS =============== */
+function updateThumbnails(activeIndex) {
+  thumbContainer.innerHTML = "";
+
+  for (let i = 1; i <= 3; i++) {
+    const tIndex = (activeIndex + i) % slides.length;
+
+    const thumb = document.createElement("div");
+  thumb.className = "thumb w-40 h-56 md:w-48 md:h-72 overflow-hidden rounded-xl shadow-xl border border-white/20";
+
+
+
+    thumb.innerHTML = `
+      <img src="${thumbnails[tIndex]}" class="w-full h-full object-cover" />
+    `;
+thumb.querySelector("img").style.transition = "0.4s ease";
+thumb.addEventListener("mouseenter", () => {
+    thumb.querySelector("img").style.transform = "scale(1.08)";
+});
+thumb.addEventListener("mouseleave", () => {
+    thumb.querySelector("img").style.transform = "scale(1)";
+});
+
+    gsap.fromTo(
+      thumb,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+    );
+
+    thumbContainer.appendChild(thumb);
+  }
+}
+
+/* =============== MAIN SLIDE ANIMATION =============== */
+function showSlide(i) {
+  slides.forEach((slide, idx) => {
+    slide.style.zIndex = idx === i ? 10 : 0;
+  });
+
+  slides.forEach((s, j) => {
+    if (j !== i) gsap.set(s, { opacity: 0 });
+  });
+
+  gsap.fromTo(
+    slides[i],
+    { scale: 0.3, y: 200, opacity: 0, borderRadius: "20px" },
+    { scale: 1, y: 0, opacity: 1, borderRadius: "0px", duration: 1.4, ease: "power3.out" }
+  );
+
+  // text animation
+  titleEl.textContent = titles[i];
+  subEl.textContent = subtitles[i];
+
+  gsap.fromTo(titleEl, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1 });
+  gsap.fromTo(subEl, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.1 });
+
+  // progress bar animation
+  gsap.fromTo(
+    progress,
+    { width: "0%" },
+    { width: "100%", duration: slideDuration / 1000, ease: "linear" }
+  );
+
+  // update next thumbnails
+  updateThumbnails(i);
+}
+
+/* =============== SLIDER LOOP =============== */
+function startSlider() {
+  showSlide(index);
+
+  setInterval(() => {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+  }, slideDuration);
+}
+
+startSlider();
+</script>
+
+<!-- STICKY BACKGROUND IMAGE SECTION -->
+<section class="relative h-screen w-full overflow-hidden z-0 about-section">
+
+    <!-- BACKGROUND IMAGE -->
+    <div class="sticky-bg absolute inset-0 bg-cover bg-center"></div>
+
+    <!-- DARK TRANSPARENT OVERLAY (MAKE BG DIM) -->
+    <div class="absolute inset-0 bg-black/80"></div>
+
+    <!-- CONTENT DIRECTLY ON IMAGE -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                w-[90%] md:w-[70%] lg:w-[55%] text-white z-[50] about-card text-center">
+
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 about-heading">
+            About <span class="text-yellow-500">Venkateshwara</span>
+        </h2>
+
+        <p class="text-lg md:text-xl leading-relaxed mb-5 about-para">
+            Established in <strong>2011</strong>, Venkateshwara Corporation is Pune’s leading 
+            <span class="text-yellow-500 font-semibold">Service Provider</span> of 
+            Balcony Shed, Industrial Shed, Tensile Structures and more.
+        </p>
+
+        <p class="text-lg md:text-xl leading-relaxed mb-5 about-para">
+            We deliver <span class="font-semibold text-yellow-500">German-grade precision</span> 
+            with lightning-fast execution across Maharashtra.
+        </p>
+
+        <p class="text-lg md:text-xl leading-relaxed about-para">
+            Led by <strong>Mr. Nilesh Ashok Konde (CEO)</strong>, our company has successfully 
+            completed <strong>500+ installations</strong> with a strong team of 50+ craftsmen.
+        </p>
+<a href="about.html" 
+   class="inline-block mt-6 px-8 py-3 
+          bg-yellow-500 hover:bg-yellow-600 
+          text-black font-semibold text-lg 
+          rounded-full shadow-lg transition">
+    Learn More
+</a>
+
+    </div>
+
+</section>
+
+
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* Main Card Animation (fade + lift + scale) */
+gsap.from(".about-card", {
+  scrollTrigger: {
+    trigger: ".about-section",
+    start: "top 85%",
+    toggleActions: "play none none reverse"
+  },
+  opacity: 0,
+  y: 60,
+  scale: 0.95,
+  duration: 1.3,
+  ease: "power3.out"
+});
+
+/* Heading Animation */
+gsap.from(".about-heading", {
+  scrollTrigger: {
+    trigger: ".about-section",
+    start: "top 80%",
+    toggleActions: "play none none reverse"
+  },
+  opacity: 0,
+  y: -40,
+  duration: 1.2,
+  ease: "power3.out",
+  delay: 0.2
+});
+
+/* Paragraphs — staggered fade-in */
+gsap.from(".about-para", {
+  scrollTrigger: {
+    trigger: ".about-section",
+    start: "top 78%",
+    toggleActions: "play none none reverse"
+  },
+  opacity: 0,
+  y: 30,
+  duration: 1.1,
+  ease: "power2.out",
+  stagger: 0.2
+});
+</script>
+
+ <section class="py-24 bg-white
+">
+  <div class="text-center mb-12">
+    <h2 class="text-5xl font-bold text-yellow-500">Our Products</h2>
+    <p class="text-xl text-gray-600">Explore our premium tensile solutions</p>
+  </div>
+
+  <!-- 5 Cards Layout -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-7xl mx-auto px-6">
+
+    <!-- FABRICATION -->
+    <div class="video-card" data-url="awaning_carparking.html">
+      <img src="images/about hero3.jpg" class="card-img">
+      <div class="card-overlay">
+        <h3>Awnings</h3>
+        <p>Weather-resistant protection systems designed for enhanced convenience, shade, and long-lasting safety.</p>
+        <a href="awaning_carparking.html" class="expand-btn">Expand →</a>
+
+      </div>
+    </div>
+
+    <!-- CIVIL WORK -->
+    <div class="video-card" data-url="civil-work.html">
+      <img src="category-images/civil work.jpg" class="card-img">
+      <div class="card-overlay">
+        <h3>Civil Work</h3>
+        <p>Reliable construction, RCC, flooring & structural work.</p>
+       <a href="civil-work.html" class="expand-btn">Expand →</a>
+
+      </div>
+    </div>
+
+    <!-- INTERIORS -->
+    <div class="video-card" data-url="interior.html">
+      <img src="category-images/interiors.jpg" class="card-img">
+      <div class="card-overlay">
+        <h3>Interiors</h3>
+        <p>Modern interior design for homes, offices & showrooms.</p>
+        <a href="interior.html" class="expand-btn">Expand →</a>
+
+      </div>
+    </div>
+
+    <!-- EXTERIORS -->
+    <div class="video-card" data-url="exterior.html">
+      <img src="category-images/exteriors.jpg" class="card-img">
+      <div class="card-overlay">
+        <h3>Exteriors</h3>
+        <p>Outdoor tensile, façade & exterior structure solutions.</p>
+       <a href="exterior.html" class="expand-btn">Expand →</a>
+
+      </div>
+    </div>
+
+    <!-- OTHER SERVICES -->
+    <div class="video-card" data-url="other-services.html">
+      <img src="category-images/other services.jpg" class="card-img">
+      <div class="card-overlay">
+        <h3>Other Services</h3>
+        <p>Retractable roofs, scaffolding & custom project services.</p>
+        <a href="other-services.html" class="expand-btn">Expand →</a>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+document.querySelectorAll(".video-card").forEach(card => {
+  
+  card.addEventListener("mousemove", e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;  
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((y - centerY) / centerY) * 8;  // tilt amount
+    const rotateY = ((x - centerX) / centerX) * -8;
+
+    card.style.transform = `
+      perspective(900px)
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+      scale(1.08)
+    `;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = `
+      perspective(900px)
+      rotateX(0deg)
+      rotateY(0deg)
+      scale(1)
+    `;
+  });
+
+});
+</script>
+<section id="testimonials" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+
+        <!-- LEFT STATIC TEXT -->
+        <div class="flex flex-col justify-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                What Our Customers Say
+            </h2>
+            <p class="text-gray-500 text-base max-w-md leading-relaxed">
+                Relation so in confined smallest children unpacked delicate.
+                Why sir end believe uncivil respect.
+                Always get adieus nature day course for common.
+            </p>
+        </div>
+
+        <!-- RIGHT — TESTIMONIAL SLIDER -->
+        <div class="relative h-[480px] overflow-hidden">
+
+            <!-- SLIDER TRACK -->
+            <div class="slider-track flex flex-col gap-6">
+
+                <!-- CARD 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-left">
+                        <p class="text-gray-700 text-sm leading-relaxed">
+                            Their engineering solutions helped us reduce downtime significantly.
+                            The precision and reliability of their products are unmatched.
+                        </p>
+                        <h4 class="font-semibold mt-3 text-gray-900">Anita Sharma</h4>
+                        <p class="text-gray-500 text-xs">
+                            Operations Head, Global Gears Pvt. Ltd.
+                        </p>
+                    </div>
+                    <div class="testimonial-stars">★★★★★</div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-left">
+                        <p class="text-gray-700 text-sm leading-relaxed">
+                            From design to final delivery, everything was handled smoothly.
+                            Their team is professional and very easy to work with.
+                        </p>
+                        <h4 class="font-semibold mt-3 text-gray-900">Vikram Desai</h4>
+                        <p class="text-gray-500 text-xs">
+                            Procurement Officer, Precision Tools Co.
+                        </p>
+                    </div>
+                    <div class="testimonial-stars">★★★★★</div>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-left">
+                        <p class="text-gray-700 text-sm leading-relaxed">
+                            They are our trusted partner for spare parts manufacturing.
+                            Consistency and quality in every order keep us coming back.
+                        </p>
+                        <h4 class="font-semibold mt-3 text-gray-900">Suresh Nair</h4>
+                        <p class="text-gray-500 text-xs">
+                            Director, Nova Engineering Works
+                        </p>
+                    </div>
+                    <div class="testimonial-stars">★★★★★</div>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-left">
+                        <p class="text-gray-700 text-sm leading-relaxed">
+                            Professional team with deep technical knowledge.
+                            Their components are durable and perfectly matched to our requirements.
+                        </p>
+                        <h4 class="font-semibold mt-3 text-gray-900">Priya Kulkarni</h4>
+                        <p class="text-gray-500 text-xs">
+                            Project Engineer, Advance Constructions Ltd.
+                        </p>
+                    </div>
+                    <div class="testimonial-stars">★★★★★</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+ <section class="relative w-full py-20 px-6 h-[60vh] md:px-16 overflow-hidden" id="cta-section">
+
+  <!-- 🔥 VIDEO BACKGROUND -->
+  <video autoplay loop muted playsinline preload="auto"
+         class="absolute inset-0 w-full h-full object-cover z-0">
+    <source src="images/cta.mp4" type="video/mp4">
+  </video>
+
+  <!-- DARK OVERLAY -->
+  <div class="absolute inset-0 bg-black/50 z-10"></div>
+
+  <!-- CONTENT -->
+  <div class="relative max-w-3xl mx-auto text-center text-white flex flex-col justify-center h-full z-20">
+    <div id="cta-text">
+      
+      <h2 class="text-3xl md:text-5xl font-bold leading-tight mb-4">
+        Contact Us to Learn More!
+      </h2>
+
+      <p class="text-lg md:text-xl leading-relaxed mb-6">
+        Partner with Venkateshwara Corporation to bring premium tensile solutions
+        to your space. Let us help your organization thrive with modern designs,
+        durable materials, and expert engineering.
+      </p>
+
+      <!-- ⭐ NEW BUTTON -->
+      <a href="contact.html"
+         class="inline-block bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold text-lg px-10 py-3 rounded-full shadow-xl hover:scale-105 transition-transform duration-300">
+        Reach Out Now →
+      </a>
+
+    </div>
+  </div>
+
+</section>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* =============================
+   TEXT (fade + blur + lift)
+============================= */
+gsap.from("#cta-text > *", {
+  scrollTrigger: {
+    trigger: "#cta-section",
+    start: "top 75%",
+    toggleActions: "play none none reverse"
+  },
+  y: 40,
+  opacity: 0,
+  filter: "blur(10px)",
+  duration: 1.2,
+  ease: "power3.out",
+  stagger: 0.2
+});
+
+/* =============================
+   BUTTON (pop-in)
+============================= */
+gsap.from("#cta-text a", {
+  scrollTrigger: {
+    trigger: "#cta-section",
+    start: "top 75%",
+    toggleActions: "play none none reverse"
+  },
+  scale: 0.6,
+  opacity: 0,
+  duration: 0.9,
+  ease: "back.out(1.8)",
+  delay: 0.3
+});
+</script>
+
+
+
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-white relative overflow-hidden">
+  <!-- ANIMATED SILVER WAVE (kept exactly as you love it) -->
+  <div class="absolute inset-x-0 -top-1 h-24 md:h-28">
+    <svg viewBox="0 0 1440 320" class="w-full h-full" preserveAspectRatio="none">
+      <path fill="#e2e8f0" fill-opacity="0.15">
+        <animate attributeName="d" dur="18s" repeatCount="indefinite"
+          values="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,0L0,0Z;
+                  M0,80L48,96C96,112,192,144,288,144C384,144,480,112,576,96C672,80,768,80,864,96C960,112,1056,144,1152,144C1248,144,1344,112,1392,96L1440,80L1440,0L0,0Z;
+                  M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,0L0,0Z"/>
+      </path>
+      <path fill="#94a3b8" fill-opacity="0.12">
+        <animate attributeName="d" dur="22s" repeatCount="indefinite"
+          values="M0,192L48,181.3C96,170.7,192,149.3,288,149.3C384,149.3,480,170.7,576,181.3C672,192,768,192,864,181.3C960,170.7,1056,149.3,1152,149.3C1248,149.3,1344,170.7,1392,181.3L1440,192L1440,0L0,0Z;
+                  M0,170L48,160C96,150,192,130,288,130C384,130,480,150,576,160C672,170,768,170,864,160C960,150,1056,130,1152,130C1248,130,1344,150,1392,160L1440,170L1440,0L0,0Z;
+                  M0,192L48,181.3C96,170.7,192,149.3,288,149.3C384,149.3,480,170.7,576,181.3C672,192,768,192,864,181.3C960,170.7,1056,149.3,1152,149.3C1248,149.3,1344,170.7,1392,181.3L1440,192L1440,0L0,0Z"/>
+      </path>
+    </svg>
+  </div>
+
+  <!-- COMPACT CONTENT -->
+  <div class="container mx-auto px-4 pt-12 pb-8 relative z-10">
+    <div class="footer-grid grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10
+                justify-items-start md:justify-items-center
+                max-w-7xl mx-auto">
+
+      <!-- 1. LOGO -->
+      <div data-aos="fade-up" class="w-full">
+        <img src="logo.jpg" alt="Logo" class="h-24 mb-3 rounded-lg shadow-xl"
+             data-aos="zoom-in" data-aos-delay="100">
+        <p class="text-lg opacity-90 leading-tight"
+           data-aos="fade-up" data-aos-delay="200">
+          Founded in 2011, <strong class="text-yellow-400">Venkateshwara</strong> – Pune’s tensile experts.
+        </p>
+        <div class="flex space-x-3 mt-4" data-aos="fade-up" data-aos-delay="300">
+          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex-center hover:bg-yellow-400"><i data-feather="twitter" class="w-5 h-5"></i></a>
+          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex-center hover:bg-yellow-400"><i data-feather="facebook" class="w-5 h-5"></i></a>
+          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex-center hover:bg-yellow-400"><i data-feather="instagram" class="w-5 h-5"></i></a>
+          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex-center hover:bg-yellow-400"><i data-feather="linkedin" class="w-5 h-5"></i></a>
+        </div>
+      </div>
+
+      <!-- 2. PRODUCTS -->
+      <!-- 2. PRODUCTS -->
+      <div data-aos="fade-up" data-aos-delay="100">
+        <h3 class="text-xl font-bold mb-3 text-yellow-400">Products</h3>
+        <ul class="space-y-1.5 text-lg">
+          <li data-aos="fade-right" data-aos-delay="150"><a href="awaning_carparking.html" class="opacity-80 hover:text-yellow-400">Awnings</a></li>
+          <li data-aos="fade-right" data-aos-delay="150"><a href="fabrication.html" class="opacity-80 hover:text-yellow-400">Fabrication</a></li>
+          <li data-aos="fade-right" data-aos-delay="200"><a href="civil-work.html" class="opacity-80 hover:text-yellow-400">Civil Work</a></li>
+          <li data-aos="fade-right" data-aos-delay="250"><a href="interior.html" class="opacity-80 hover:text-yellow-400">Interiors</a></li>
+          <li data-aos="fade-right" data-aos-delay="300"><a href="exterior.html" class="opacity-80 hover:text-yellow-400">Exteriors</a></li>
+          <li data-aos="fade-right" data-aos-delay="350"><a href="other-services.html" class="opacity-80 hover:text-yellow-400">Other Services</a></li>
+        </ul>
+      </div>
+
+      <!-- 3. LINKS -->
+      <div data-aos="fade-up" data-aos-delay="200">
+        <h3 class="text-xl font-bold mb-3 text-yellow-400">Quick Links</h3>
+        <ul class="space-y-1.5 text-lg">
+          <li data-aos="fade-left" data-aos-delay="100"><a href="index.html"   class="opacity-80 hover:text-yellow-400">Home</a></li>
+          <li data-aos="fade-left" data-aos-delay="150"><a href="about.html"   class="opacity-80 hover:text-yellow-400">About</a></li>
+          <li data-aos="fade-left" data-aos-delay="200"><a href="products.html" class="opacity-80 hover:text-yellow-400">Products</a></li>
+          <li data-aos="fade-left" data-aos-delay="250"><a href="gallery.html" class="opacity-80 hover:text-yellow-400">Gallery</a></li>
+          <li data-aos="fade-left" data-aos-delay="250"><a href="contact.html" class="opacity-80 hover:text-yellow-400">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- 4. CONTACT -->
+      <div data-aos="fade-up" data-aos-delay="300">
+        <h3 class="text-xl font-bold mb-3 text-yellow-400">Visit Us</h3>
+        <div class="text-lg space-y-2">
+          <p class="opacity-80 flex items-center gap-2" data-aos="flip-up" data-aos-delay="100">
+            <i data-feather="phone" class="w-3.5 h-3.5 text-yellow-400"></i> +91 80476 93560
+          </p>
+          <p class="opacity-80 flex items-start gap-2" data-aos="flip-up" data-aos-delay="200">
+            <i data-feather="map-pin" class="w-5.5 h-5.5 text-yellow-400 mt-0.5"></i>
+             G AT NO 1242, Near Pune Hotel, Nawale Wasti, Chikhali, Pune - 411062
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="text-center mt-8 pt-5 border-t border-slate-800 text-sm opacity-70"
+         data-aos="fade-up" data-aos-delay="400">
+      © 2025 Venkateshwara Corporation • <a href="https://dwi4u.com/">Developed by DW Innovation Pvt. Ltd. • Pune</a>
+    </div>
+  </div>
+</footer>
+
+
+<!-- AOS + FEATHER (once in <head>) -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+<script>
+  AOS.init({ once: true, duration: 250, easing: "ease-out" });
+
+  feather.replace();
+  // tiny helper
+  const style = document.createElement('style');
+  style.innerHTML = `.flex-center{display:flex;align-items:center;justify-content:center}`;
+  document.head.appendChild(style);
+
+  
+</script>
+
+  <!-- SCRIPTS (unchanged + AOS engine) -->
+  <script>
+    feather.replace();
+
+
+   </script>
+
+  <!-- AOS STYLES (PASTE IN <head> OR HERE) -->
+  <style>
+    [data-aos] {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    [data-aos="fade-up"] { transform: translateY(60px); }
+    [data-aos="fade-down"] { transform: translateY(-60px); }
+    [data-aos="fade-right"] { transform: translateX(-60px); }
+    [data-aos="fade-left"] { transform: translateX(60px); }
+    [data-aos="zoom-in"] { transform: scale(0.8); }
+    [data-aos="flip-up"], [data-aos="flip-left"] { 
+      transform: perspective(400px) rotateY(25deg); 
+    }
+    .aos-animate {
+      opacity: 1 !important;
+      transform: translateY(0) translateX(0) scale(1) rotateY(0) !important;
+    }
+  </style>  <!-- Floating Buttons -->
+<div class="fixed bottom-6 right-6 flex flex-col items-center gap-4 z-50">
+
+  <!-- CALL BUTTON -->
+  <a href="tel:83172 24455"
+     class="w-14 h-14 bg-blue-600 rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
+     <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" 
+          class="w-7 h-7 invert">
+  </a>
+
+  <!-- WHATSAPP BUTTON -->
+  <a href="https://wa.me/83172 24455?text=Hello%2C%20I%20want%20more%20information"
+     target="_blank"
+     class="w-14 h-14 bg-green-500 rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
+     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+          class="w-8 h-8">
+  </a>
+
+</div>
+
+  
+</body></html>

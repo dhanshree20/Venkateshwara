@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact – Venkateshwara Corporation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600;700&family=Saira:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+
+
+  <style>
+    /* NAVBAR FONT */
+    nav,
+    nav a,
+    nav button {
+      font-family: 'Arimo', sans-serif !important;
+    }
+
+    /* SITE-WIDE FONT */
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span,
+    li,
+    button,
+    a {
+      font-family: 'Saira', sans-serif !important;
+    }
+
+    :root {
+      --navy: #0f172a;
+      --gold: #f59e0b;
+      --blue: #1e40af;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+      color: var(--navy);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: 700;
+    }
+
+    /* ZOOM-IN IMAGE */
+    .zoom-in {
+      animation: zoomIn 20s ease-in-out infinite;
+    }
+
+    @keyframes zoomIn {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.15);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* TYPEWRITER EFFECT */
+    .typewriter {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 4px solid #f59e0b;
+      width: 0;
+      animation: typing 3.5s steps(40, end) forwards, blink 0.8s infinite;
+    }
+
+    .typewriter:nth-of-type(2) {
+      animation-delay: 4s;
+    }
+
+    .typewriter:nth-of-type(3) {
+      animation-delay: 8s;
+    }
+
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 100%;
+      }
+    }
+
+    @keyframes blink {
+      50% {
+        border-color: transparent;
+      }
+    }
+
+    /* SHIMMER BUTTON */
+    .shimmer {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transform: skewX(-25deg);
+      transition: 0.5s;
+    }
+
+    .group:hover .shimmer {
+      left: 100%;
+    }
+
+    #navbar {
+      transform: translateY(-150%);
+    }
+
+    .slider-track {
+      animation: slide-up 14s linear infinite;
+    }
+
+    :root {
+      --navy: #071433;
+      /* change this to match your logo's navy */
+      --edge-white: #ffffff;
+    }
+
+    /* NAV BACKGROUND: dark center fading to white both sides */
+    .nav-gradient {
+      position: relative;
+      /* The gradient centers a dark band and fades to white at the edges.
+     Tweak the stop percentages to widen / narrow the dark band. */
+      background: linear-gradient(to right,
+          var(--edge-white) 0%,
+          var(--edge-white) 18%,
+          rgba(255, 255, 255, 0.9) 28%,
+          var(--navy) 50%,
+          rgba(255, 255, 255, 0.9) 72%,
+          var(--edge-white) 82%,
+          var(--edge-white) 100%);
+      box-shadow: 0 2px 10px rgba(10, 10, 10, 0.06);
+      z-index: 100;
+    }
+
+    /* Make sure nav content sits above the gradient band */
+    .site-nav>.max-w-7xl {
+      position: relative;
+    }
+
+    /* Links style (dark by default so they are visible on white edges) */
+    .nav-link {
+      color: var(--navy);
+      text-decoration: none;
+      transition: color .18s ease, transform .12s ease;
+    }
+
+    .nav-link:hover {
+      color: #1f3f66;
+      transform: translateY(-1px);
+    }
+
+    /* Logo sizing */
+    .logo-wrap .logo-img {
+      height: 64px;
+      /* increase if you want bigger logo */
+      width: auto;
+      display: block;
+      pointer-events: none;
+      /* add subtle border / background to sit clearly on dark band if needed */
+      /* background: rgba(255,255,255,0.03); padding: 6px; border-radius: 10px; */
+    }
+
+    /* Optional: give dark band slightly taller area vertically
+   so the logo sits perfectly and the fade feels natural. */
+    .site-nav {
+      padding-top: 1rem;
+      /* increases navbar height */
+      padding-bottom: 1rem;
+    }
+
+    /* RESPONSIVE: on small screens, reduce gradient complexity */
+    @media (max-width: 768px) {
+      .nav-gradient {
+        background: linear-gradient(to right,
+            var(--edge-white) 0%,
+            var(--edge-white) 22%,
+            var(--navy) 50%,
+            var(--edge-white) 78%,
+            var(--edge-white) 100%);
+      }
+
+      .logo-wrap .logo-img {
+        height: 52px;
+      }
+
+      .nav-left,
+      .nav-right {
+        gap: 10px;
+        font-size: 14px;
+      }
+    }
+
+    /* If you have transparent navbar on scroll, use this to keep readability */
+    .site-nav.scrolled {
+      backdrop-filter: blur(6px);
+    }
+
+    @keyframes scroll-left {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .scroll-text {
+      display: inline-flex;
+      white-space: nowrap;
+      will-change: transform;
+    }
+
+    /* ==========================================================
+   FOOTER — RESPONSIVE FIXES (MOBILE + TABLET)
+   Desktop layout remains EXACTLY the same
+========================================================== */
+
+    /* -------- Small Screens (mobile: below 768px) -------- */
+    @media (max-width: 768px) {
+
+      /* Footer grid becomes 1 column */
+      .footer-grid {
+        grid-template-columns: 1fr !important;
+        justify-items: start !important;
+        text-align: left !important;
+      }
+
+      /* Logo size reduced slightly */
+      footer img {
+        height: 80px !important;
+      }
+
+      /* Reduce heading sizes */
+      .footer-grid h3 {
+        font-size: 1.2rem !important;
+      }
+
+      /* Reduce paragraph + list size */
+      .footer-grid p,
+      .footer-grid li a {
+        font-size: 0.95rem !important;
+        line-height: 1.4rem !important;
+      }
+
+      /* Social icons spacing */
+      .footer-grid .flex {
+        justify-content: flex-start !important;
+      }
+
+      /* Spacing adjustments */
+      .footer-grid>div {
+        padding-left: 0 !important;
+      }
+    }
+
+    /* -------- Extra Small Screens (below 480px) -------- */
+    @media (max-width: 480px) {
+
+      .footer-grid h3 {
+        font-size: 1.1rem !important;
+      }
+
+      .footer-grid p,
+      .footer-grid li a {
+        font-size: 0.9rem !important;
+      }
+
+      footer img {
+        height: 70px !important;
+      }
+    }
+
+    /* -------- Tablet Fix (769px–1024px) -------- */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .footer-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 2rem !important;
+      }
+
+      .footer-grid p,
+      .footer-grid li a {
+        font-size: 1rem !important;
+      }
+    }
+
+    /* Ensure navbar stays above hero section text */
+    nav {
+      position: relative;
+      z-index: 100 !important;
+    }
+
+    /* Ensure hamburger button is always above everything */
+    #hamburger-btn {
+      position: relative;
+      z-index: 200 !important;
+    }
+
+    /* ==========================================================
+   NAVBAR RESPONSIVE FIXES (NO CHANGE TO DESKTOP LAYOUT)
+========================================================== */
+
+    /* Hide desktop menus on screens below md */
+    @media (max-width: 768px) {
+
+      .desktop-menu {
+        display: none !important;
+      }
+
+      nav .grid {
+        grid-template-columns: 1fr auto !important;
+        grid-template-rows: 1fr !important;
+      }
+
+      nav .row-span-2 {
+        grid-row: auto !important;
+      }
+
+      /* Align logo and hamburger neatly */
+      #hamburger-btn {
+        display: flex !important;
+      }
+
+      /* Logo smaller */
+      nav img {
+        height: 60px !important;
+      }
+    }
+
+    /* -------- TABLET LAYOUT FIX (769px – 1024px) -------- */
+    @media (min-width: 769px) and (max-width: 1024px) {
+
+      nav .grid {
+        grid-template-columns: auto 1fr !important;
+        grid-template-rows: auto auto !important;
+      }
+
+      nav img {
+        height: 70px !important;
+      }
+
+      nav a {
+        font-size: 0.95rem !important;
+      }
+
+      /* Reduce spacing to prevent wrapping */
+      .desktop-menu {
+        margin-left: 0.6rem;
+        margin-right: 0.6rem;
+      }
+    }
+
+    /* -------- MOBILE MENU STYLES -------- */
+    #mobile-menu {
+      transition: all 0.3s ease-in-out;
+      transform-origin: top;
+    }
+
+    #mobile-menu.show {
+      display: block !important;
+      transform: scaleY(1);
+    }
+
+    #mobile-menu.hide {
+      transform: scaleY(0);
+      opacity: 0;
+    }
+
+    @media (max-width: 480px) {
+      .fixed.bottom-6.right-6 {
+        right: 1rem !important;
+        bottom: 1rem !important;
+      }
+    }
+
+    /* FIX horizontal scroll on contact page */
+    body,
+    html {
+      overflow-x: hidden !important;
+    }
+
+    /* Fix any element causing overflow */
+    html,
+    body {
+      overflow-x: hidden !important;
+    }
+
+    footer .flex.space-x-3 {
+      justify-content: flex-start !important;
+    }
+
+    /* Fix icon background alignment */
+    footer .flex.space-x-3 a {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    /* Fix hero section overflow */
+    section.relative.overflow-hidden {
+      overflow-x: hidden !important;
+    }
+
+    /* Media fix for floating buttons */
+    @media (max-width: 480px) {
+      .fixed.bottom-6.right-6 {
+        right: 0.75rem !important;
+        bottom: 0.75rem !important;
+        transform: translateX(0) !important;
+      }
+    }
+
+    /* HERO SECTION FIXES */
+    .hero-contact {
+      height: 100vh;
+    }
+
+    /* Mobile height fix */
+    @media (max-width: 768px) {
+      .hero-contact {
+        height: 85vh;
+      }
+
+      .hero-contact h1 {
+        font-size: 2.4rem !important;
+        line-height: 2.8rem !important;
+      }
+
+      .hero-contact h1 span:last-child {
+        font-size: 2.8rem !important;
+      }
+
+      .hero-contact p {
+        font-size: 1.2rem !important;
+        height: auto !important;
+        margin-top: 1rem;
+      }
+
+      /* prevent overflow */
+      .hero-contact .container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+      }
+
+      /* Make image fit mobile screens better */
+      .hero-contact img {
+        object-position: center !important;
+      }
+    }
+
+    /* Extra small screens (below 480px) */
+    @media (max-width: 480px) {
+      .hero-contact {
+        height: 80vh;
+      }
+
+      .hero-contact h1 {
+        font-size: 2rem !important;
+        line-height: 2.3rem !important;
+      }
+
+      .hero-contact p {
+        font-size: 1rem !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-white text-white">
+
+
+
+
+
+  <!-- TOP CONTACT BAR -->
+  <div class="w-full bg-white text-black text-sm py-2 border-b overflow-hidden relative">
+
+    <div class="scroll-text whitespace-nowrap flex items-center" style="animation: scroll-left 18s linear infinite;">
+
+      <span class="mx-6">
+        info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
+      </span>
+
+      <span class="mx-6">
+        info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
+      </span>
+
+      <span class="mx-6">
+        info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
+      </span>
+
+      <!-- duplicate more for smoother infinite loop -->
+      <span class="mx-6">
+        info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
+      </span>
+
+    </div>
+
+  </div>
+
+  <!-- MAIN NAVBAR -->
+  <nav class="w-full bg-white shadow z-50">
+
+    <!-- GRID: LEFT (logo + name) | RIGHT (top menu + categories) -->
+    <div class="max-w-7xl mx-auto px-6 
+              grid grid-cols-[auto_1fr] grid-rows-2 items-center">
+
+      <!-- 🌟 LEFT SIDE: LOGO + COMPANY NAME -->
+      <div class="row-span-2 flex items-center space-x-3 sm:space-x-4 -ml-[30px]">
+
+        <img src="logo.jpg" class="h-14 w-auto sm:h-20 transition-all duration-300" alt="Logo">
+
+        <div class="flex flex-col leading-tight">
+          <span class="text-xl sm:text-2xl font-bold text-gray-900">Venkateshwara</span>
+          <span class="text-sm sm:text-lg font-semibold text-gray-700">Corporation</span>
+        </div>
+
+      </div>
+
+
+      <!-- ⭐ ROW 1: RIGHT TOP MENU -->
+      <div class="flex justify-end items-center space-x-8
+                text-gray-800 font-medium text-lg py-3">
+
+        <a href="index.html" class="hover:text-yellow-500 desktop-menu">Home</a>
+        <a href="about.html" class="hover:text-yellow-500 desktop-menu">About Us</a>
+        <a href="products.html" class="hover:text-yellow-500 desktop-menu">Products</a>
+        <a href="gallery.html" class="hover:text-yellow-500 desktop-menu">Gallery</a>
+        <a href="contact.html" class="hover:text-yellow-500 desktop-menu">Contact Us</a>
+
+        <i data-feather="facebook" class="w-5 h-5 cursor-pointer desktop-menu"></i>
+        <i data-feather="linkedin" class="w-5 h-5 cursor-pointer desktop-menu"></i>
+        <i data-feather="instagram" class="w-5 h-5 cursor-pointer desktop-menu"></i>
+
+        <!-- HAMBURGER MENU BUTTON -->
+        <button id="hamburger-btn"
+          class="md:hidden w-8 h-8 flex flex-col justify-center items-center space-y-1 bg-transparent border-none cursor-pointer">
+          <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+          <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+          <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+        </button>
+
+      </div>
+
+      <!-- ⭐ ROW 2: CENTERED CATEGORIES -->
+      <div class="flex justify-center items-center space-x-12
+                text-gray-900 font-semibold text-lg py-2 desktop-menu">
+
+        <!-- Same dropdowns here -->
+        <!-- FABRICATION -->
+        <div class="relative group">
+          <a href="awaning_carparking.html" class="hover:text-yellow-500">Awnings ▾</a>
+
+          <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white shadow-lg
+                    rounded-lg p-4 w-56 z-50">
+            <ul class="space-y-2 text-base">
+              <li><a href="awaning_carparking.html" class="text-gray-800 hover:text-yellow-500">Awnings</a></li>
+              <li><a href="awaning_carparking.html" class="text-gray-800 hover:text-yellow-500">Car Parking</a></li>
+              <li><a href="awaning_carparking.html" class="text-gray-800 hover:text-yellow-500">Tensile Structures</a>
+              </li>
+              <li><a href="awaning_carparking.html" class="text-gray-800 hover:text-yellow-500">Sheds</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Fabrication -->
+
+        <div class="relative group">
+          <a href="awaning_carparking.html" class="hover:text-yellow-500">Fabrication ▾</a>
+
+          <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white shadow-lg
+                    rounded-lg p-4 w-56 z-50">
+            <ul class="space-y-2 text-base">
+              <li><a href="fabrication.html" class="text-gray-800 hover:text-yellow-500">Residential Fabrication</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- INTERIORS -->
+        <div class="relative group">
+          <a href="interior.html" class="hover:text-yellow-500">Interiors ▾</a>
+
+
+          <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+            <ul class="space-y-2 text-base">
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Furniture Work</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Plumbing</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Electrical Work</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Tile Work</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Painting</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Internal Modification</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">POP</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Sliding Windows</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">French Doors</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CIVIL WORK -->
+        <div class="relative group">
+          <a href="civil-work.html" class="hover:text-yellow-500">Civil Work▾</a>
+
+
+          <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+            <ul class="space-y-2 text-base">
+              <li><a href="civil-work.html" class="text-gray-800 hover:text-yellow-500">Construction</a></li>
+              <li><a href="civil-work.html" class="text-gray-800 hover:text-yellow-500">Renovation</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- EXTERIORS -->
+        <div class="relative group">
+          <a href="exterior.html" class="hover:text-yellow-500">Exteriors ▾</a>
+
+
+          <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+            <ul class="space-y-2 text-base">
+              <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Society Painting</a></li>
+              <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Bungalow Painting</a></li>
+              <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Cleaning</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <!-- OTHER SERVICES -->
+        <div class="relative group">
+          <a href="other-services.html" class="hover:text-yellow-500">Other Services ▾</a>
+
+
+          <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+            <ul class="space-y-2 text-base">
+              <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Waterproofing</a></li>
+              <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Housekeeping</a></li>
+              <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Society AMC</a></li>
+              <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Pest Control</a></li>
+              <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Gardening</a></li>
+              <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Anti-Bird Netting</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- MOBILE MENU (hidden by default) -->
+      <div id="mobile-menu"
+        class="hidden md:hidden absolute top-full left-0 right-0 bg-white shadow-lg z-50 border-t border-gray-200">
+        <div class="flex flex-col py-4 px-6 space-y-4">
+          <!-- Main Navigation -->
+          <a href="index.html"
+            class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">Home</a>
+          <a href="about.html"
+            class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">About Us</a>
+          <a href="products.html"
+            class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">Products</a>
+          <a href="gallery.html"
+            class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">Gallery</a>
+          <a href="contact.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2">Contact Us</a>
+
+
+        </div>
+      </div>
+
+    </div>
+
+  </nav>
+  <script>
+    const hamburger = document.getElementById("hamburger-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    hamburger.addEventListener("click", () => {
+      // toggle open
+      if (mobileMenu.classList.contains("show")) {
+        mobileMenu.classList.remove("show");
+        mobileMenu.classList.add("hide");
+      } else {
+        mobileMenu.classList.remove("hide");
+        mobileMenu.classList.add("show");
+      }
+
+      // Animate hamburger icon
+      hamburger.classList.toggle("open");
+    });
+  </script>
+
+  <script>feather.replace();</script>
+  <!-- CINEMATIC HERO WITH ZOOM-IN IMAGE + TYPEWRITER -->
+  <section class="hero-contact relative overflow-hidden h-screen">
+
+    <!-- Background Image -->
+    <div class="absolute inset-0 -z-10">
+      <img src="images/contact hero.jpg" alt="Tensile Roof Installation" class="w-full h-full object-cover zoom-in">
+    </div>
+
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black/60"></div>
+
+    <!-- Content -->
+    <div class="container mx-auto px-6 h-full flex flex-col justify-center items-center text-center relative z-10">
+
+      <h1 class="text-5xl md:text-8xl font-medium text-white mb-6 leading-tight">
+        <span class="block relative">
+          Contact
+          <span class="absolute -inset-1 blur-2xl opacity-50 animate-pulse" style="background: var(--gold);"></span>
+        </span>
+        <span class="block text-white mt-2" style="text-shadow: 0 0 40px var(--gold);">
+          Venkateshwara
+        </span>
+      </h1>
+
+      <p class="text-3xl md:text-3xl text-gray-200 font-light mb-8 h-16">
+        <span class="typewriter" style="color: var(--gold);"></span>
+        <span class="blink" style="color: var(--gold);">|</span>
+      </p>
+
+    </div>
+  </section>
+
+  <script>
+    // TYPEWRITER PHRASES
+    const phrases = [
+      "One call. One roof. Zero leaks.",
+      "500+ shelters built. Yours next?",
+      "24/7 support. Rain or shine."
+    ];
+    let index = 0;
+    const element = document.querySelector('.typewriter');
+    const blink = document.querySelector('.blink');
+
+    function typeNext() {
+      element.textContent = '';
+      element.style.width = '0';
+      blink.style.display = 'inline';
+
+      setTimeout(() => {
+        element.textContent = phrases[index];
+        element.style.width = '100%';
+        index = (index + 1) % phrases.length;
+      }, 500);
+    }
+
+    // Start + loop
+    typeNext();
+    setInterval(typeNext, 4000);
+  </script>
+
+  <!-- CONTACT SECTION -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6 max-w-6xl">
+      <div class="grid md:grid-cols-2 gap-16 items-start">
+
+        <!-- LEFT SIDE: INFO -->
+        <!-- LEFT SIDE -->
+        <div id="contact-left" class="space-y-8">
+
+          <h2 class="text-4xl font-bold mb-4 text-[var(--navy)]">
+            We are always ready <span class="text-[var(--gold)]">to help you</span>
+          </h2>
+          <p class="text-gray-600 leading-relaxed text-lg">
+            Whether you have a question about our tensile sheds, industrial projects, or custom installations — our team
+            is here to assist you promptly and professionally.
+          </p>
+
+          <!-- Info Cards -->
+          <div class="space-y-6 pt-4">
+
+            <div class="bg-white p-6 rounded-2xl shadow-md">
+              <h3 class="text-xl font-semibold text-[var(--navy)] mb-2">📞 Call Us</h3>
+              <p class="text-lg text-gray-700">+91 98765 43210</p>
+
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-md">
+              <h3 class="text-xl font-semibold text-[var(--navy)] mb-2">📧 Email</h3>
+              <p class="text-lg text-gray-700">info@venkateshwara.com</p>
+
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-md">
+              <h3 class="text-xl font-semibold text-[var(--navy)] mb-2">📍 Office Address</h3>
+              <p class="text-gray-700 leading-relaxed">
+                G AT NO 1242, Near Pune Hotel, Nawale Wasti, Chikhali, Pune - 411062
+              </p>
+            </div>
+
+            <!-- <div class="bg-white p-6 rounded-2xl shadow-md">
+              <h3 class="text-xl font-semibold text-[var(--navy)] mb-3">🌐 Follow Us</h3>
+              <div class="flex gap-5">
+                <a href="#" class="text-[var(--gold)] hover:text-yellow-600 text-2xl"><i data-feather="facebook"></i></a>
+                <a href="#" class="text-[var(--gold)] hover:text-yellow-600 text-2xl"><i data-feather="instagram"></i></a>
+                <a href="#" class="text-[var(--gold)] hover:text-yellow-600 text-2xl"><i data-feather="linkedin"></i></a>
+              </div>
+            </div> -->
+
+          </div>
+        </div>
+
+        <!-- RIGHT SIDE: FORM -->
+
+
+        <div id="contact-right" class="bg-white p-10 rounded-3xl shadow-xl">
+
+          <h3 class="text-3xl font-bold mb-8 text-[var(--navy)]">
+            Get in <span class="text-[var(--gold)]">Touch</span>
+          </h3>
+
+          <!-- EMAIL FORM -->
+          <form id="contactForm" action="https://formsubmit.co/mail-info@venkateshwaracorp.com" method="POST"
+            class="space-y-6">
+
+            <!-- REQUIRED Hidden Fields -->
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" id="realSubject" name="_subject">
+
+            <input type="text" name="name" placeholder="Your Name" required
+              class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-yellow-200 outline-none text-base">
+
+            <input type="email" name="email" placeholder="Your Email" required
+              class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-yellow-200 outline-none text-base">
+
+            <input type="tel" name="contact" placeholder="Your Contact Number" required
+              class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-yellow-200 outline-none text-base">
+
+            <input type="text" id="subjectField" name="subject" placeholder="Subject" class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-yellow-200  outline-none text-base text-black
+">
+
+            <textarea name="message" rows="5" placeholder="Your Message" required
+              class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-yellow-200 outline-none text-base resize-none"></textarea>
+
+            <button type="submit"
+              class="w-full py-4 text-lg font-semibold bg-[var(--gold)] text-[var(--navy)] rounded-xl shadow-md hover:bg-yellow-600 transition transform hover:scale-[1.02]">
+              Send Message
+            </button>
+          </form>
+
+          <p id="formMessage" class="mt-3 text-green-600"></p>
+
+
+          <script>
+            // Set subject dynamically on form submit
+            document.getElementById("contactForm").addEventListener("submit", function () {
+              const subjectValue = document.getElementById("subjectField").value.trim();
+              document.getElementById("realSubject").value = subjectValue || "New Website Inquiry";
+            });
+
+            // Auto-fill subject from ?subject=
+            window.addEventListener("DOMContentLoaded", () => {
+              const params = new URLSearchParams(window.location.search);
+
+              // Read the subject sent from product buttons
+              const productSubject = params.get("subject");
+
+              if (productSubject) {
+                const subjectField = document.getElementById("subjectField");
+                subjectField.value = decodeURIComponent(productSubject);
+              }
+            });
+
+            // Optional success text
+            const form = document.getElementById("contactForm");
+            form.addEventListener("submit", function () {
+              let msg = document.getElementById("formMessage");
+              if (msg) {
+                msg.textContent = "Sending...";
+                setTimeout(() => {
+                  msg.textContent = "Your message has been sent successfully!";
+                }, 1500);
+              }
+            });
+          </script>
+
+        </div>
+      </div>
+  </section>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // LEFT SIDE → Fade from Left
+    gsap.from("#contact-left", {
+      x: -80,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: "#contact-left",
+        start: "top 85%",
+      }
+    });
+
+    // RIGHT SIDE → Fade from Right
+    gsap.from("#contact-right", {
+      x: 80,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: "#contact-right",
+        start: "top 85%",
+      }
+    });
+  </script>
+
+  <section class="pb-20 bg-white">
+    <div class="container mx-auto px-6 max-w-6xl">
+
+      <h2 class="text-4xl font-bold text-center mb-4 text-gray-800">
+        Visit <span class="text-yellow-500">Venkateshwara Corporation</span>
+      </h2>
+      <p class="text-center text-gray-500 max-w-xl mx-auto mb-10">
+        Find our exact location on the map below.
+      </p>
+
+      <iframe
+        src="https://www.google.com/maps?q=G+AT+NO+1242,Near+Pune+Hotel,Nawale+Wasti,Chikhali,Pune+411062&output=embed"
+        width="100%" height="400" style="border:0;" allowfullscreen loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+
+    </div>
+  </section>
+
+
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-white relative overflow-hidden">
+    <!-- ANIMATED SILVER WAVE (kept exactly as you love it) -->
+    <div class="absolute inset-x-0 -top-1 h-24 md:h-28">
+      <svg viewBox="0 0 1440 320" class="w-full h-full" preserveAspectRatio="none">
+        <path fill="#e2e8f0" fill-opacity="0.15">
+          <animate attributeName="d" dur="18s" repeatCount="indefinite"
+            values="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,0L0,0Z;
+                  M0,80L48,96C96,112,192,144,288,144C384,144,480,112,576,96C672,80,768,80,864,96C960,112,1056,144,1152,144C1248,144,1344,112,1392,96L1440,80L1440,0L0,0Z;
+                  M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,0L0,0Z" />
+        </path>
+        <path fill="#94a3b8" fill-opacity="0.12">
+          <animate attributeName="d" dur="22s" repeatCount="indefinite"
+            values="M0,192L48,181.3C96,170.7,192,149.3,288,149.3C384,149.3,480,170.7,576,181.3C672,192,768,192,864,181.3C960,170.7,1056,149.3,1152,149.3C1248,149.3,1344,170.7,1392,181.3L1440,192L1440,0L0,0Z;
+                  M0,170L48,160C96,150,192,130,288,130C384,130,480,150,576,160C672,170,768,170,864,160C960,150,1056,130,1152,130C1248,130,1344,150,1392,160L1440,170L1440,0L0,0Z;
+                  M0,192L48,181.3C96,170.7,192,149.3,288,149.3C384,149.3,480,170.7,576,181.3C672,192,768,192,864,181.3C960,170.7,1056,149.3,1152,149.3C1248,149.3,1344,170.7,1392,181.3L1440,192L1440,0L0,0Z" />
+        </path>
+      </svg>
+    </div>
+
+    <!-- COMPACT CONTENT -->
+    <div class="container mx-auto px-4 pt-12 pb-8 relative z-10">
+      <div class="footer-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10
+                justify-items-start md:justify-items-center
+                max-w-7xl mx-auto">
+
+
+        <!-- 1. LOGO -->
+        <div data-aos="fade-up" class="w-full">
+          <img src="logo.jpg" alt="Logo" class="h-24 mb-3 rounded-lg shadow-xl" data-aos="zoom-in" data-aos-delay="100">
+          <p class="text-lg opacity-90 leading-tight" data-aos="fade-up" data-aos-delay="200">
+            Founded in 2011, <strong class="text-yellow-400">Venkateshwara</strong> – Pune’s tensile experts.
+          </p>
+          <div class="flex space-x-3 mt-4" data-aos="fade-up" data-aos-delay="300">
+            <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex-center hover:bg-yellow-400"><i
+                data-feather="twitter" class="w-5 h-5"></i></a>
+            <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex-center hover:bg-yellow-400"><i
+                data-feather="facebook" class="w-5 h-5"></i></a>
+            <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex-center hover:bg-yellow-400"><i
+                data-feather="instagram" class="w-5 h-5"></i></a>
+            <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex-center hover:bg-yellow-400"><i
+                data-feather="linkedin" class="w-5 h-5"></i></a>
+          </div>
+        </div>
+
+        <!-- 2. PRODUCTS -->
+        <!-- 2. PRODUCTS -->
+        <div data-aos="fade-up" data-aos-delay="100">
+          <h3 class="text-xl font-bold mb-3 text-yellow-400">Products</h3>
+          <ul class="space-y-1.5 text-lg">
+          <li data-aos="fade-right" data-aos-delay="150"><a href="awaning_carparking.html" class="opacity-80 hover:text-yellow-400">Awnings</a></li>
+          <li data-aos="fade-right" data-aos-delay="150"><a href="fabrication.html" class="opacity-80 hover:text-yellow-400">Fabrication</a></li>
+          <li data-aos="fade-right" data-aos-delay="200"><a href="civil-work.html" class="opacity-80 hover:text-yellow-400">Civil Work</a></li>
+          <li data-aos="fade-right" data-aos-delay="250"><a href="interior.html" class="opacity-80 hover:text-yellow-400">Interiors</a></li>
+          <li data-aos="fade-right" data-aos-delay="300"><a href="exterior.html" class="opacity-80 hover:text-yellow-400">Exteriors</a></li>
+          <li data-aos="fade-right" data-aos-delay="350"><a href="other-services.html" class="opacity-80 hover:text-yellow-400">Other Services</a></li>
+        </ul>
+        </div>
+
+        <!-- 3. LINKS -->
+        <div data-aos="fade-up" data-aos-delay="200">
+          <h3 class="text-xl font-bold mb-3 text-yellow-400">Quick Links</h3>
+          <ul class="space-y-1.5 text-lg">
+            <li data-aos="fade-left" data-aos-delay="100"><a href="index.html"
+                class="opacity-80 hover:text-yellow-400">Home</a></li>
+            <li data-aos="fade-left" data-aos-delay="150"><a href="about.html"
+                class="opacity-80 hover:text-yellow-400">About</a></li>
+            <li data-aos="fade-left" data-aos-delay="200"><a href="products.html"
+                class="opacity-80 hover:text-yellow-400">Products</a></li>
+            <li data-aos="fade-left" data-aos-delay="250"><a href="gallery.html"
+                class="opacity-80 hover:text-yellow-400">Gallery</a></li>
+            <li data-aos="fade-left" data-aos-delay="250"><a href="contact.html"
+                class="opacity-80 hover:text-yellow-400">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- 4. CONTACT -->
+        <div data-aos="fade-up" data-aos-delay="300">
+          <h3 class="text-xl font-bold mb-3 text-yellow-400">Visit Us</h3>
+          <div class="text-lg space-y-2">
+            <p class="opacity-80 flex items-center gap-2" data-aos="flip-up" data-aos-delay="100">
+              <i data-feather="phone" class="w-3.5 h-3.5 text-yellow-400"></i> +91 80476 93560
+            </p>
+            <p class="opacity-80 flex items-start gap-2" data-aos="flip-up" data-aos-delay="200">
+              <i data-feather="map-pin" class="w-5.5 h-5.5 text-yellow-400 mt-0.5"></i>
+              G AT NO 1242, Near Pune Hotel, Nawale Wasti, Chikhali, Pune - 411062
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- COPYRIGHT -->
+      <div class="text-center mt-8 pt-5 border-t border-slate-800 text-sm opacity-70" data-aos="fade-up"
+        data-aos-delay="400">
+        © 2025 Venkateshwara Corporation • <a href="https://dwi4u.com/">Developed by DW Innovation Pvt. Ltd. • Pune</a>
+      </div>
+    </div>
+  </footer>
+  <script>feather.replace();</script>
+  <script src="https://unpkg.com/feather-icons"></script>
+
+
+
+
+  <!-- Floating Buttons -->
+  <div class="fixed bottom-6 right-6 flex flex-col items-center gap-4 z-50">
+
+    <!-- CALL BUTTON -->
+    <a href="tel:83172 24455"
+      class="w-14 h-14 bg-blue-600 rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
+      <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" class="w-7 h-7 invert">
+    </a>
+
+    <!-- WHATSAPP BUTTON -->
+    <a href="https://wa.me/83172 24455?text=Hello%2C%20I%20want%20more%20information" target="_blank"
+      class="w-14 h-14 bg-green-500 rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="w-8 h-8">
+    </a>
+
+  </div>
+  <script>
+    feather.replace();
+  </script>
+
+</body>
+
+</html>

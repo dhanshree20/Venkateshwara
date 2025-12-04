@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Civil Work – Venkateshwara Corporation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600;700&family=Saira:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+
+  <style>
+    /* NAVBAR FONT */
+nav, nav a, nav button {
+    font-family: 'Arimo', sans-serif !important;
+}
+/* SITE-WIDE FONT */
+body, h1, h2, h3, h4, h5, h6, p, span, li, button, a {
+    font-family: 'Saira', sans-serif !important;
+}
+    :root { --navy: #0f172a; --gold: #f59e0b; --blue: #1e40af; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; }
+    
+    .fab-btn {
+      padding: 14px 32px; border-radius: 999px; background: rgba(255,255,255,0.15);
+      color: white; font-weight: 600; font-size: 1.1rem; border: 1px solid rgba(255,255,255,0.3);
+      transition: all 0.3s ease; backdrop-filter: blur(4px);
+    }
+    .fab-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-3px); }
+    .fab-btn.active { background: var(--gold); color: black; box-shadow: 0 8px 25px rgba(245,158,11,0.5); }
+    
+    .sub-btn {
+      background: white; padding: 10px 24px; border-radius: 999px; border: 1px solid #e2e8f0;
+      font-weight: 500; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .sub-btn:hover { background: #fef3c7; border-color: #f59e0b; }
+    .sub-btn.active { background: var(--gold); color: black; font-weight: 700; border-color: var(--gold); }
+
+    .product-details { display: none; }
+    .product-details.active { display: block; animation: fadeIn 0.6s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .subcategory { display: none; }
+    .subcategory.active { display: block; }
+    
+    :root{
+      --navy: #071433;
+      --edge-white: #ffffff;
+    }
+
+    .nav-gradient {
+      position: relative;
+      background: linear-gradient(
+        to right,
+        var(--edge-white) 0%,
+        var(--edge-white) 18%,
+        rgba(255,255,255,0.9) 28%,
+        var(--navy) 50%,
+        rgba(255,255,255,0.9) 72%,
+        var(--edge-white) 82%,
+        var(--edge-white) 100%
+      );
+      box-shadow: 0 2px 10px rgba(10,10,10,0.06);
+      z-index: 100;
+    }
+
+    .site-nav > .max-w-7xl { position: relative; }
+
+    .nav-link {
+      color: var(--navy);
+      text-decoration: none;
+      transition: color .18s ease, transform .12s ease;
+    }
+    .nav-link:hover { color: #1f3f66; transform: translateY(-1px); }
+
+    .logo-wrap .logo-img {
+      height: 64px;
+      width: auto;
+      display: block;
+      pointer-events: none;
+    }
+
+    .site-nav {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-gradient {
+        background: linear-gradient(
+          to right,
+          var(--edge-white) 0%,
+          var(--edge-white) 22%,
+          var(--navy) 50%,
+          var(--edge-white) 78%,
+          var(--edge-white) 100%
+        );
+      }
+
+      .logo-wrap .logo-img { height: 52px; }
+      .nav-left, .nav-right { gap: 10px; font-size: 14px; }
+    }
+
+    .site-nav.scrolled {
+      backdrop-filter: blur(6px);
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .scroll-text {
+      display: inline-flex;
+      white-space: nowrap;
+      will-change: transform;
+    }
+
+/* Ensure navbar stays above hero section text */
+nav {
+  position: relative;
+  z-index: 100 !important;
+}
+
+/* Ensure hamburger button is always above everything */
+#hamburger-btn {
+  position: relative;
+  z-index: 200 !important;
+}
+/* ==========================================================
+   NAVBAR RESPONSIVE FIXES (NO CHANGE TO DESKTOP LAYOUT)
+========================================================== */
+
+/* Hide desktop menus on screens below md */
+@media (max-width: 768px) {
+
+  .desktop-menu {
+    display: none !important;
+  }
+
+  nav .grid {
+    grid-template-columns: 1fr auto !important;
+    grid-template-rows: 1fr !important;
+  }
+
+  nav .row-span-2 {
+    grid-row: auto !important;
+  }
+
+  /* Align logo and hamburger neatly */
+  #hamburger-btn {
+    display: flex !important;
+  }
+
+  /* Logo smaller */
+  nav img {
+    height: 60px !important;
+  }
+}
+
+/* -------- TABLET LAYOUT FIX (769px – 1024px) -------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  nav .grid {
+    grid-template-columns: auto 1fr !important;
+    grid-template-rows: auto auto !important;
+  }
+
+  nav img {
+    height: 70px !important;
+  }
+
+  nav a {
+    font-size: 0.95rem !important;
+  }
+
+  /* Reduce spacing to prevent wrapping */
+  .desktop-menu {
+    margin-left: 0.6rem;
+    margin-right: 0.6rem;
+  }
+}
+
+/* -------- MOBILE MENU STYLES -------- */
+#mobile-menu {
+  transition: all 0.3s ease-in-out;
+  transform-origin: top;
+}
+
+#mobile-menu.show {
+  display: block !important;
+  transform: scaleY(1);
+}
+
+#mobile-menu.hide {
+  transform: scaleY(0);
+  opacity: 0;
+}
+
+/* ==========================================================
+   FOOTER — RESPONSIVE FIXES (MOBILE + TABLET)
+   Desktop layout remains EXACTLY the same
+========================================================== */
+
+/* -------- Small Screens (mobile: below 768px) -------- */
+@media (max-width: 768px) {
+
+  /* Footer grid becomes 1 column */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    justify-items: start !important;
+    text-align: left !important;
+  }
+
+  /* Logo size reduced slightly */
+  footer img {
+    height: 80px !important;
+  }
+
+  /* Reduce heading sizes */
+  .footer-grid h3 {
+    font-size: 1.2rem !important;
+  }
+
+  /* Reduce paragraph + list size */
+  .footer-grid p,
+  .footer-grid li a {
+    font-size: 0.95rem !important;
+    line-height: 1.4rem !important;
+  }
+
+  /* Social icons spacing */
+  .footer-grid .flex {
+    justify-content: flex-start !important;
+  }
+
+  /* Spacing adjustments */
+  .footer-grid > div {
+    padding-left: 0 !important;
+  }
+}
+
+/* -------- Extra Small Screens (below 480px) -------- */
+@media (max-width: 480px) {
+
+  .footer-grid h3 {
+    font-size: 1.1rem !important;
+  }
+
+  .footer-grid p,
+  .footer-grid li a {
+    font-size: 0.9rem !important;
+  }
+
+  footer img {
+    height: 70px !important;
+  }
+}
+
+/* -------- Tablet Fix (769px–1024px) -------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem !important;
+  }
+
+  .footer-grid p,
+  .footer-grid li a {
+    font-size: 1rem !important;
+  }
+}
+/* ==========================================================
+   NAVBAR RESPONSIVE FIXES (NO CHANGE TO DESKTOP LAYOUT)
+========================================================== */
+
+/* Hide desktop menus on screens below md */
+@media (max-width: 768px) {
+
+  .desktop-menu {
+    display: none !important;
+  }
+
+  nav .grid {
+    grid-template-columns: 1fr auto !important;
+    grid-template-rows: 1fr !important;
+  }
+
+  nav .row-span-2 {
+    grid-row: auto !important;
+  }
+
+  /* Align logo and hamburger neatly */
+  #hamburger-btn {
+    display: flex !important;
+  }
+
+  /* Logo smaller */
+  nav img {
+    height: 60px !important;
+  }
+}
+
+/* -------- TABLET LAYOUT FIX (769px – 1024px) -------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  nav .grid {
+    grid-template-columns: auto 1fr !important;
+    grid-template-rows: auto auto !important;
+  }
+
+  nav img {
+    height: 70px !important;
+  }
+
+  nav a {
+    font-size: 0.95rem !important;
+  }
+
+  /* Reduce spacing to prevent wrapping */
+  .desktop-menu {
+    margin-left: 0.6rem;
+    margin-right: 0.6rem;
+  }
+}
+
+/* -------- MOBILE MENU STYLES -------- */
+#mobile-menu {
+  transition: all 0.3s ease-in-out;
+  transform-origin: top;
+}
+
+#mobile-menu.show {
+  display: block !important;
+  transform: scaleY(1);
+}
+
+#mobile-menu.hide {
+  transform: scaleY(0);
+  opacity: 0;
+}
+/* Ensure navbar stays above hero section text */
+nav {
+  position: relative;
+  z-index: 100 !important;
+}
+
+/* Ensure hamburger button is always above everything */
+#hamburger-btn {
+  position: relative;
+  z-index: 200 !important;
+}
+
+/* Footer fix */
+  footer .flex.space-x-3 {
+    justify-content: flex-start !important;
+  }
+
+  /* Fix icon background alignment */
+  footer .flex.space-x-3 a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+</style>
+</head>
+<body class="bg-white ">
+
+  
+
+  
+
+<!-- TOP CONTACT BAR -->
+<div class="w-full bg-white text-black text-sm py-2 border-b overflow-hidden relative">
+
+  <div class="scroll-text whitespace-nowrap flex items-center"
+       style="animation: scroll-left 18s linear infinite;">
+    
+    <span class="mx-6">
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
+    </span>
+
+    <span class="mx-6">
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
+    </span>
+
+    <span class="mx-6">
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
+    </span>
+
+    <!-- duplicate more for smoother infinite loop -->
+    <span class="mx-6">
+      info@venkateshwaracorp.com &nbsp;&nbsp; | &nbsp;&nbsp; +91 83172 24455
+    </span>
+
+  </div>
+
+</div>
+
+
+<!-- MAIN NAVBAR -->
+<nav class="w-full bg-white shadow z-50">
+
+  <!-- GRID: LEFT (logo + name) | RIGHT (top menu + categories) -->
+  <div class="max-w-7xl mx-auto px-6 
+              grid grid-cols-[auto_1fr] grid-rows-2 items-center">
+
+    <!-- 🌟 LEFT SIDE: LOGO + COMPANY NAME -->
+    <div class="row-span-2 flex items-center space-x-3 sm:space-x-4 -ml-[30px]">
+
+  <img src="logo.jpg" 
+       class="h-14 w-auto sm:h-20 transition-all duration-300" 
+       alt="Logo">
+
+  <div class="flex flex-col leading-tight">
+    <span class="text-xl sm:text-2xl font-bold text-gray-900">Venkateshwara</span>
+    <span class="text-sm sm:text-lg font-semibold text-gray-700">Corporation</span>
+  </div>
+
+</div>
+
+    <!-- ⭐ ROW 1: RIGHT TOP MENU -->
+    <div class="flex justify-end items-center space-x-8
+                text-gray-800 font-medium text-lg py-3">
+
+      <a href="index.html" class="hover:text-yellow-500 desktop-menu">Home</a>
+      <a href="about.html" class="hover:text-yellow-500 desktop-menu">About Us</a>
+      <a href="products.html" class="hover:text-yellow-500 desktop-menu">Products</a>
+      <a href="gallery.html" class="hover:text-yellow-500 desktop-menu">Gallery</a>
+      <a href="contact.html" class="hover:text-yellow-500 desktop-menu">Contact Us</a>
+
+      <i data-feather="facebook" class="w-5 h-5 cursor-pointer desktop-menu"></i>
+      <i data-feather="linkedin" class="w-5 h-5 cursor-pointer desktop-menu"></i>
+      <i data-feather="instagram" class="w-5 h-5 cursor-pointer desktop-menu"></i>
+
+      <!-- HAMBURGER MENU BUTTON -->
+      <button id="hamburger-btn" class="md:hidden w-8 h-8 flex flex-col justify-center items-center space-y-1 bg-transparent border-none cursor-pointer">
+        <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+        <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+        <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
+      </button>
+
+    </div>
+
+    <!-- ⭐ ROW 2: CENTERED CATEGORIES -->
+    <div class="flex justify-center items-center space-x-12
+                text-gray-900 font-semibold text-lg py-2 desktop-menu">
+
+        <!-- Same dropdowns here -->
+        <!-- FABRICATION -->
+        <div class="relative group">
+          <a href="awaning_carparking.html" class="hover:text-yellow-500">Awnings ▾</a>
+
+          <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white shadow-lg
+                    rounded-lg p-4 w-56 z-50">
+            <ul class="space-y-2 text-base">
+              <li><a href="awaning_carparking.html" class="text-gray-800 hover:text-yellow-500">Awnings</a></li>
+              <li><a href="awaning_carparking.html" class="text-gray-800 hover:text-yellow-500">Car Parking</a></li>
+              <li><a href="awaning_carparking.html" class="text-gray-800 hover:text-yellow-500">Tensile Structures</a>
+              </li>
+              <li><a href="awaning_carparking.html" class="text-gray-800 hover:text-yellow-500">Sheds</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Fabrication -->
+
+        <div class="relative group">
+          <a href="awaning_carparking.html" class="hover:text-yellow-500">Fabrication ▾</a>
+
+          <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white shadow-lg
+                    rounded-lg p-4 w-56 z-50">
+            <ul class="space-y-2 text-base">
+              <li><a href="fabrication.html" class="text-gray-800 hover:text-yellow-500">Residential Fabrication</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- INTERIORS -->
+        <div class="relative group">
+          <a href="interior.html" class="hover:text-yellow-500">Interiors ▾</a>
+
+
+          <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+            <ul class="space-y-2 text-base">
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Furniture Work</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Plumbing</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Electrical Work</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Tile Work</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Painting</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Internal Modification</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">POP</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">Sliding Windows</a></li>
+              <li><a href="interior.html" class="text-gray-800 hover:text-yellow-500">French Doors</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CIVIL WORK -->
+        <div class="relative group">
+          <a href="civil-work.html" class="hover:text-yellow-500">Civil Work▾</a>
+
+
+          <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+            <ul class="space-y-2 text-base">
+              <li><a href="civil-work.html" class="text-gray-800 hover:text-yellow-500">Construction</a></li>
+              <li><a href="civil-work.html" class="text-gray-800 hover:text-yellow-500">Renovation</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- EXTERIORS -->
+        <div class="relative group">
+          <a href="exterior.html" class="hover:text-yellow-500">Exteriors ▾</a>
+
+
+          <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+            <ul class="space-y-2 text-base">
+              <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Society Painting</a></li>
+              <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Bungalow Painting</a></li>
+              <li><a href="exterior.html" class="text-gray-800 hover:text-yellow-500">Cleaning</a></li>
+
+            </ul>
+          </div>
+        </div>
+
+        <!-- OTHER SERVICES -->
+        <div class="relative group">
+          <a href="other-services.html" class="hover:text-yellow-500">Other Services ▾</a>
+
+
+          <div class="absolute top-full left-1/2 -translate-x-1/2
+                    hidden group-hover:flex flex-col bg-white
+                    shadow-lg rounded-lg p-4 w-56 z-50">
+            <ul class="space-y-2 text-base">
+              <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Waterproofing</a></li>
+              <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Housekeeping</a></li>
+              <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Society AMC</a></li>
+              <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Pest Control</a></li>
+              <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Gardening</a></li>
+              <li><a href="other-services.html" class="text-gray-800 hover:text-yellow-500">Anti-Bird Netting</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    <!-- MOBILE MENU (hidden by default) -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 bg-white shadow-lg z-50 border-t border-gray-200">
+      <div class="flex flex-col py-4 px-6 space-y-4">
+        <!-- Main Navigation -->
+        <a href="index.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">Home</a>
+        <a href="about.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">About Us</a>
+        <a href="products.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">Products</a>
+        <a href="gallery.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2 border-b border-gray-100">Gallery</a>
+        <a href="contact.html" class="text-gray-800 hover:text-yellow-500 font-medium py-2">Contact Us</a>
+
+        
+      </div>
+    </div>
+
+  </div>
+
+</nav>
+<script>
+const hamburger = document.getElementById("hamburger-btn");
+const mobileMenu = document.getElementById("mobile-menu");
+
+hamburger.addEventListener("click", () => {
+  // toggle open
+  if (mobileMenu.classList.contains("show")) {
+    mobileMenu.classList.remove("show");
+    mobileMenu.classList.add("hide");
+  } else {
+    mobileMenu.classList.remove("hide");
+    mobileMenu.classList.add("show");
+  }
+
+  // Animate hamburger icon
+  hamburger.classList.toggle("open");
+});
+</script>
+
+<script>feather.replace();</script>
+
+<!-- MAIN CIVIL WORK TABS -->
+<div class="w-full flex flex-wrap justify-center gap-6 py-12 mt-10 bg-gradient-to-r from-[#020617] via-[#0f172a] to-[#1e293b] rounded-xl shadow-2xl">
+  <button class="fab-btn active" data-target="construction">Construction</button>
+  <button class="fab-btn" data-target="renovation">Renovation</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container mx-auto px-6 py-12 max-w-7xl">
+
+  <!-- ========== CONSTRUCTION ========== -->
+  <div id="construction" class="subcategory active">
+    <h3 class="text-5xl font-bold text-center text-yellow-500 mb-10">Construction</h3>
+    <div class="flex flex-wrap justify-center gap-5 mb-12">
+      <button class="sub-btn active" data-product="bungalow-construction">Bungalow Construction</button>
+      <button class="sub-btn" data-product="building-construction">Building Construction</button>
+      <button class="sub-btn" data-product="bathroom-construction">Bathroom Construction</button>
+      <button class="sub-btn" data-product="kitchen-construction">Kitchen Construction</button>
+    </div>
+
+    <div id="bungalow-construction" class="product-details active">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80">
+          <img src="New_Imags/91.jpeg" alt="Bungalow Construction" class="w-full h-full object-cover rounded-xl">
+        </div>
+        <div class="p-10 flex flex-col justify-center">
+          <h4 class="text-4xl font-bold mb-6">Bungalow Construction</h4>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            Complete bungalow construction services with RCC structure, foundation work, planning, and finishing handled end-to-end. Our expert team ensures quality craftsmanship, structural integrity, and timely completion. Perfect for residential properties with modern architectural designs and sustainable building practices.
+          </p>
+          <a href="contact.html?subject=Inquiry - Bungalow Construction" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="building-construction" class="product-details">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80">
+          <img src="New_Imags/90.jpeg" alt="Building Construction" class="w-full h-full object-cover rounded-xl">
+        </div>
+        <div class="p-10 flex flex-col justify-center">
+          <h4 class="text-4xl font-bold mb-6">Building Construction</h4>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            High-quality construction services for residential and commercial buildings with strict safety and engineering standards. We specialize in multi-story construction with full RCC framework, structural work, waterproofing, and professional finishing. Complies with all building codes and regulations for safety and durability.
+          </p>
+          <a href="contact.html?subject=Inquiry - Building Construction" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="bathroom-construction" class="product-details">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80">
+          <img src="New_Imags/92.webp" alt="Bathroom Construction" class="w-full h-full object-cover rounded-xl">
+        </div>
+        <div class="p-10 flex flex-col justify-center">
+          <h4 class="text-4xl font-bold mb-6">Bathroom Construction</h4>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            Professional bathroom construction featuring proper plumbing infrastructure, waterproofing, tiling, and ventilation systems. From layout planning to fixture installation, we handle complete bathroom construction. Includes modern amenities, accessibility features, and premium finishing for functionality and aesthetics.
+          </p>
+          <a href="contact.html?subject=Inquiry - Bathroom Construction" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="kitchen-construction" class="product-details">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80">
+          <img src="New_Imags/93.webp" alt="Kitchen Construction" class="w-full h-full object-cover rounded-xl">
+        </div>
+        <div class="p-10 flex flex-col justify-center">
+          <h4 class="text-4xl font-bold mb-6">Kitchen Construction</h4>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            Complete kitchen construction with proper layout design, plumbing connections, electrical work, and ventilation systems. We provide functional and stylish kitchens with durable work surfaces, storage solutions, and modern appliance integration. Perfect for new homes and renovations with expert craftsmanship.
+          </p>
+          <a href="contact.html?subject=Inquiry - Kitchen Construction" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== RENOVATION ========== -->
+  <div id="renovation" class="subcategory">
+    <h3 class="text-5xl font-bold text-center text-yellow-500 mb-10">Renovation</h3>
+    <div class="flex flex-wrap justify-center gap-5 mb-12">
+      <button class="sub-btn active" data-product="building-renovation">Building Renovation</button>
+      <button class="sub-btn" data-product="flooring-tile">Flooring & Tile Work</button>
+      <button class="sub-btn" data-product="wall-demolition">Wall Demolition</button>
+      <button class="sub-btn" data-product="bathroom-renovation">Bathroom Renovation</button>
+      <button class="sub-btn" data-product="kitchen-renovation">Kitchen Renovation</button>
+    </div>
+
+    <div id="building-renovation" class="product-details active">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80">
+          <img src="New_Imags/94.webp" alt="Building Renovation" class="w-full h-full object-cover rounded-xl">
+        </div>
+        <div class="p-10 flex flex-col justify-center">
+          <h4 class="text-4xl font-bold mb-6">Building Renovation</h4>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            Comprehensive building renovation services transforming old structures into modern spaces. We handle structural assessments, repairs, upgrades, and complete makeovers. From exterior facade work to interior redesign, plumbing, electrical, and aesthetic improvements ensure your building looks and functions like new.
+          </p>
+          <a href="contact.html?subject=Inquiry - Building Renovation" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="flooring-tile" class="product-details">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80">
+          <img src="New_Imags/95.webp" alt="Flooring & Tile Work" class="w-full h-full object-cover rounded-xl">
+        </div>
+        <div class="p-10 flex flex-col justify-center">
+          <h4 class="text-4xl font-bold mb-6">Flooring & Tile Work</h4>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            Expert flooring and tile installation services with premium material selection. We specialize in ceramic, porcelain, marble, and natural stone tiles. Complete surface preparation, grouting, and finishing ensures durability and aesthetic appeal. Suitable for bathrooms, kitchens, living areas, and commercial spaces.
+          </p>
+          <a href="contact.html?subject=Inquiry - Flooring & Tile Work" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="wall-demolition" class="product-details">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80">
+          <img src="New_Imags/78.jpeg" alt="Wall Demolition" class="w-full h-full object-cover rounded-xl">
+        </div>
+        <div class="p-10 flex flex-col justify-center">
+          <h4 class="text-4xl font-bold mb-6">Wall Demolition</h4>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            Safe and efficient wall demolition services for space reconfiguration and renovations. We carefully assess structural integrity before removal, handle debris management, and ensure safety compliance. Perfect for creating open-plan layouts, removing partition walls, or structural modifications while maintaining building integrity.
+          </p>
+          <a href="contact.html?subject=Inquiry - Wall Demolition" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="bathroom-renovation" class="product-details">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80">
+          <img src="New_Imags/92.webp" alt="Bathroom Renovation" class="w-full h-full object-cover rounded-xl">
+        </div>
+        <div class="p-10 flex flex-col justify-center">
+          <h4 class="text-4xl font-bold mb-6">Bathroom Renovation</h4>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            Transform your bathroom with complete renovation services. We handle plumbing upgrades, waterproofing, modern fixtures, designer tiles, and lighting solutions. From budget-friendly makeovers to luxury spa-like bathrooms, we create functional and beautiful spaces. Includes ventilation, storage optimization, and premium finishes.
+          </p>
+          <a href="contact.html?subject=Inquiry - Bathroom Renovation" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="kitchen-renovation" class="product-details">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="h-64 md:h-80">
+          <img src="New_Imags/93.webp" alt="Kitchen Renovation" class="w-full h-full object-cover rounded-xl">
+        </div>
+        <div class="p-10 flex flex-col justify-center">
+          <h4 class="text-4xl font-bold mb-6">Kitchen Renovation</h4>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            Expert kitchen renovation services modernizing old kitchens into contemporary spaces. We upgrade plumbing, electrical systems, install quality countertops, cabinets, and modern appliances. Complete design consultation ensures optimal workflow, storage solutions, and aesthetic beauty. Perfect for improving functionality and property value.
+          </p>
+          <a href="contact.html?subject=Inquiry - Kitchen Renovation" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-full shadow-xl transition transform hover:scale-105 w-fit">I'm Interested</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- JAVASCRIPT FOR TAB FUNCTIONALITY -->
+<script>
+  // Main Tabs
+  document.querySelectorAll('.fab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.fab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.subcategory').forEach(sc => sc.classList.remove('active'));
+      const target = document.getElementById(btn.dataset.target);
+      target.classList.add('active');
+
+      // Auto-select first sub-btn and show first product
+      const firstBtn = target.querySelector('.sub-btn');
+      if (firstBtn) {
+        target.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
+        firstBtn.classList.add('active');
+        target.querySelectorAll('.product-details').forEach(p => p.classList.remove('active'));
+        document.getElementById(firstBtn.dataset.product).classList.add('active');
+      }
+    });
+  });
+
+  // Sub Buttons
+  document.querySelectorAll('.sub-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const parent = btn.closest('.subcategory');
+      parent.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      parent.querySelectorAll('.product-details').forEach(p => p.classList.remove('active'));
+      document.getElementById(btn.dataset.product).classList.add('active');
+    });
+  });
+</script>
+
+<section class="relative w-full py-20 px-6 h-[60vh] md:px-16 overflow-hidden" id="cta-section">
+
+  <!-- 🔥 VIDEO BACKGROUND -->
+  <video autoplay loop muted playsinline preload="auto"
+         class="absolute inset-0 w-full h-full object-cover z-0">
+    <source src="images/cta.mp4" type="video/mp4">
+  </video>
+
+  <!-- DARK OVERLAY -->
+  <div class="absolute inset-0 bg-black/50 z-10"></div>
+
+  <!-- CONTENT -->
+  <div class="relative max-w-3xl mx-auto text-center text-white flex flex-col justify-center h-full z-20">
+    <div id="cta-text">
+      
+      <h2 class="text-3xl md:text-5xl font-bold leading-tight mb-4">
+        Contact Us to Learn More!
+      </h2>
+
+      <p class="text-lg md:text-xl leading-relaxed mb-6">
+        Partner with Venkateshwara Corporation to bring premium tensile solutions
+        to your space. Let us help your organization thrive with modern designs,
+        durable materials, and expert engineering.
+      </p>
+
+      <!-- ⭐ NEW BUTTON -->
+      <a href="contact.html"
+         class="inline-block bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold text-lg px-10 py-3 rounded-full shadow-xl hover:scale-105 transition-transform duration-300">
+        Reach Out Now →
+      </a>
+
+    </div>
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+  <footer class="bg-slate-900 text-white relative overflow-hidden">
+  <!-- ANIMATED SILVER WAVE (kept exactly as you love it) -->
+  <div class="absolute inset-x-0 -top-1 h-24 md:h-28">
+    <svg viewBox="0 0 1440 320" class="w-full h-full" preserveAspectRatio="none">
+      <path fill="#e2e8f0" fill-opacity="0.15">
+        <animate attributeName="d" dur="18s" repeatCount="indefinite"
+          values="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,0L0,0Z;
+                  M0,80L48,96C96,112,192,144,288,144C384,144,480,112,576,96C672,80,768,80,864,96C960,112,1056,144,1152,144C1248,144,1344,112,1392,96L1440,80L1440,0L0,0Z;
+                  M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,0L0,0Z"/>
+      </path>
+      <path fill="#94a3b8" fill-opacity="0.12">
+        <animate attributeName="d" dur="22s" repeatCount="indefinite"
+          values="M0,192L48,181.3C96,170.7,192,149.3,288,149.3C384,149.3,480,170.7,576,181.3C672,192,768,192,864,181.3C960,170.7,1056,149.3,1152,149.3C1248,149.3,1344,170.7,1392,181.3L1440,192L1440,0L0,0Z;
+                  M0,170L48,160C96,150,192,130,288,130C384,130,480,150,576,160C672,170,768,170,864,160C960,150,1056,130,1152,130C1248,130,1344,150,1392,160L1440,170L1440,0L0,0Z;
+                  M0,192L48,181.3C96,170.7,192,149.3,288,149.3C384,149.3,480,170.7,576,181.3C672,192,768,192,864,181.3C960,170.7,1056,149.3,1152,149.3C1248,149.3,1344,170.7,1392,181.3L1440,192L1440,0L0,0Z"/>
+      </path>
+    </svg>
+  </div>
+
+  <!-- COMPACT CONTENT -->
+  <div class="container mx-auto px-4 pt-12 pb-8 relative z-10">
+    <div class="footer-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10
+                justify-items-start md:justify-items-center
+                max-w-7xl mx-auto">
+
+
+      <!-- 1. LOGO -->
+      <div data-aos="fade-up" class="w-full">
+        <img src="logo.jpg" alt="Logo" class="h-24 mb-3 rounded-lg shadow-xl"
+             data-aos="zoom-in" data-aos-delay="100">
+        <p class="text-lg opacity-90 leading-tight"
+           data-aos="fade-up" data-aos-delay="200">
+          Founded in 2011, <strong class="text-yellow-400">Venkateshwara</strong> – Pune’s tensile experts.
+        </p>
+        <div class="flex space-x-3 mt-4" data-aos="fade-up" data-aos-delay="300">
+          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-yellow-400"><i data-feather="twitter" class="w-5 h-5"></i></a>
+          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-yellow-400"><i data-feather="facebook" class="w-5 h-5"></i></a>
+          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-yellow-400"><i data-feather="instagram" class="w-5 h-5"></i></a>
+          <a href="#" class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center hover:bg-yellow-400"><i data-feather="linkedin" class="w-5 h-5"></i></a>
+        </div>
+      </div>
+
+      <!-- 2. PRODUCTS -->
+      <div data-aos="fade-up" data-aos-delay="100">
+        <h3 class="text-xl font-bold mb-3 text-yellow-400">Products</h3>
+        <ul class="space-y-1.5 text-lg">
+          <li data-aos="fade-right" data-aos-delay="150"><a href="awaning_carparking.html" class="opacity-80 hover:text-yellow-400">Awnings</a></li>
+          <li data-aos="fade-right" data-aos-delay="150"><a href="fabrication.html" class="opacity-80 hover:text-yellow-400">Fabrication</a></li>
+          <li data-aos="fade-right" data-aos-delay="200"><a href="civil-work.html" class="opacity-80 hover:text-yellow-400">Civil Work</a></li>
+          <li data-aos="fade-right" data-aos-delay="250"><a href="interior.html" class="opacity-80 hover:text-yellow-400">Interiors</a></li>
+          <li data-aos="fade-right" data-aos-delay="300"><a href="exterior.html" class="opacity-80 hover:text-yellow-400">Exteriors</a></li>
+          <li data-aos="fade-right" data-aos-delay="350"><a href="other-services.html" class="opacity-80 hover:text-yellow-400">Other Services</a></li>
+        </ul>
+      </div>
+
+      <!-- 3. LINKS -->
+      <div data-aos="fade-up" data-aos-delay="200">
+        <h3 class="text-xl font-bold mb-3 text-yellow-400">Quick Links</h3>
+        <ul class="space-y-1.5 text-lg">
+          <li data-aos="fade-left" data-aos-delay="100"><a href="index.html"   class="opacity-80 hover:text-yellow-400">Home</a></li>
+          <li data-aos="fade-left" data-aos-delay="150"><a href="about.html"   class="opacity-80 hover:text-yellow-400">About</a></li>
+          <li data-aos="fade-left" data-aos-delay="200"><a href="products.html" class="opacity-80 hover:text-yellow-400">Products</a></li>
+          <li data-aos="fade-left" data-aos-delay="250"><a href="gallery.html" class="opacity-80 hover:text-yellow-400">Gallery</a></li>
+          <li data-aos="fade-left" data-aos-delay="250"><a href="contact.html" class="opacity-80 hover:text-yellow-400">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- 4. CONTACT -->
+      <div data-aos="fade-up" data-aos-delay="300">
+        <h3 class="text-xl font-bold mb-3 text-yellow-400">Visit Us</h3>
+        <div class="text-lg space-y-2">
+          <p class="opacity-80 flex items-center gap-2" data-aos="flip-up" data-aos-delay="100">
+            <i data-feather="phone" class="w-3.5 h-3.5 text-yellow-400"></i> +91 80476 93560
+          </p>
+          <p class="opacity-80 flex items-start gap-2" data-aos="flip-up" data-aos-delay="200">
+            <i data-feather="map-pin" class="w-5.5 h-5.5 text-yellow-400 mt-0.5"></i>
+             G AT NO 1242, Near Pune Hotel, Nawale Wasti, Chikhali, Pune - 411062
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="text-center mt-8 pt-5 border-t border-slate-800 text-sm opacity-70"
+         data-aos="fade-up" data-aos-delay="400">
+      © 2025 Venkateshwara Corporation • <a href="https://dwi4u.com/">Developed by DW Innovation Pvt. Ltd. • Pune</a>
+  </div>
+  </div>
+</footer>
+
+<script src="components/navbar.js"></script>
+<script> feather.replace(); </script>
+<!-- Floating Buttons -->
+<div class="fixed bottom-6 right-6 flex flex-col items-center gap-4 z-50">
+
+  <!-- CALL BUTTON -->
+   <a href="tel:83172 24455"
+     class="w-14 h-14 bg-blue-600 rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
+     <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" 
+          class="w-7 h-7 invert">
+  </a>
+
+  <!-- WHATSAPP BUTTON -->
+  <a href="https://wa.me/83172 24455?text=Hello%2C%20I%20want%20more%20information"
+     target="_blank"
+     class="w-14 h-14 bg-green-500 rounded-full shadow-xl flex items-center justify-center hover:scale-110 transition">
+     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+          class="w-8 h-8">
+  </a>
+
+</div>
+
+</body>
+</html>
