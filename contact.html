@@ -809,7 +809,7 @@
 
             <div class="bg-white p-6 rounded-2xl shadow-md">
               <h3 class="text-xl font-semibold text-[var(--navy)] mb-2">📞 Call Us</h3>
-              <p class="text-lg text-gray-700">+91 98765 43210</p>
+              <p class="text-lg text-gray-700">+91 8317224455</p>
 
             </div>
 
@@ -848,8 +848,7 @@
           </h3>
 
           <!-- EMAIL FORM -->
-          <form id="contactForm" action="https://formsubmit.co/mail-info@venkateshwaracorp.com" method="POST"
-            class="space-y-6">
+          <form id="contactForm" class="space-y-6">
 
             <!-- REQUIRED Hidden Fields -->
             <input type="hidden" name="_captcha" value="false">
@@ -881,37 +880,43 @@
 
 
           <script>
-            // Set subject dynamically on form submit
-            document.getElementById("contactForm").addEventListener("submit", function () {
-              const subjectValue = document.getElementById("subjectField").value.trim();
-              document.getElementById("realSubject").value = subjectValue || "New Website Inquiry";
-            });
+  document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault(); // stop normal submit
 
-            // Auto-fill subject from ?subject=
-            window.addEventListener("DOMContentLoaded", () => {
-              const params = new URLSearchParams(window.location.search);
+    // Get form values
+    const name = document.querySelector('input[name="name"]').value;
+    const email = document.querySelector('input[name="email"]').value;
+    const phone = document.querySelector('input[name="contact"]').value;
+    const subject = document.getElementById("subjectField").value || "New Website Inquiry";
+    const message = document.querySelector('textarea[name="message"]').value;
 
-              // Read the subject sent from product buttons
-              const productSubject = params.get("subject");
+    // WhatsApp number (country code ke sath)
+    const whatsappNumber = "918317224455"; // +91 hata ke
 
-              if (productSubject) {
-                const subjectField = document.getElementById("subjectField");
-                subjectField.value = decodeURIComponent(productSubject);
-              }
-            });
+    // Create WhatsApp message
+    const whatsappMessage = `
+Hello Venkateshwara Corporation 👋
 
-            // Optional success text
-            const form = document.getElementById("contactForm");
-            form.addEventListener("submit", function () {
-              let msg = document.getElementById("formMessage");
-              if (msg) {
-                msg.textContent = "Sending...";
-                setTimeout(() => {
-                  msg.textContent = "Your message has been sent successfully!";
-                }, 1500);
-              }
-            });
-          </script>
+📌 *New Enquiry*
+
+👤 Name: ${name}
+📧 Email: ${email}
+📞 Contact: ${phone}
+📝 Subject: ${subject}
+
+💬 Message:
+${message}
+    `;
+
+    // Encode message
+    const encodedMessage = encodeURIComponent(whatsappMessage.trim());
+
+    // Open WhatsApp
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    window.open(whatsappURL, "_blank");
+  });
+</script>
+
 
         </div>
       </div>
